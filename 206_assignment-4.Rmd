@@ -208,7 +208,7 @@ napl_t
 # HA: means are significantly different in 2012 and 2017 for IVEE/NAPL.
 
 # 1. establish normality: is 2012 IVEE/2017 IVEE and 2012 NAPL/2017 NAPL data normal?
-# 2. test for equal variances
+# 2. test for equal variances for Student's or Welch
 # 3. run a t-test
 
 
