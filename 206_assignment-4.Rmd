@@ -154,11 +154,12 @@ size_qq_napl
 size_hist_ivee <- ggplot(abund_ivee, aes(x = SIZE)) +
   geom_histogram(bins = 17)
 size_hist_ivee
+# not normally distributed
 
-size_hist_napl <- ggplot(abund_2012, aes(x = SIZE)) +
+size_hist_napl <- ggplot(abund_napl, aes(x = SIZE)) +
   geom_histogram(bins = 10)
 size_hist_napl
-# not normally distributed
+# normally distributed
 ```
 
 ```{r test for equal variances, include = FALSE}
@@ -209,6 +210,9 @@ napl_t
 # 1. establish normality: is 2012 IVEE/2017 IVEE and 2012 NAPL/2017 NAPL data normal?
 # 2. test for equal variances
 # 3. run a t-test
+
+
+
 
 
 ```
