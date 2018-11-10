@@ -15,11 +15,11 @@ library(tidyverse)
 library(vcdExtra)
 
 # read in .csv and get in tidy format
-abund <- read_csv("lobster_size_abundance.csv") %>% 
-  as.data.frame() %>% 
+abund_master <- read_csv("lobster_size_abundance.csv")
+abund <- as.data.frame(abund_master) %>% 
   expand.dft(freq = "COUNT")
-traps <- read_csv("lobster_traps.csv") %>% 
-  as.data.frame() %>% 
+traps_master <- read_csv("lobster_traps.csv")
+traps <- as.data.frame(traps_master) %>% 
   expand.dft(freq = "TRAPS")
 
 ```
@@ -56,7 +56,8 @@ trap_table
 
 
 ##### 1. box and whisker 
-```{r abundance histogram}
+```{r abundance histogram, include = FALSE}
+# just wanted to see what this looked like
 abund_hist <- ggplot(abund, aes(x = SIZE)) +
   geom_histogram() +
   facet_wrap(~ SITE)
@@ -64,7 +65,30 @@ abund_hist <- ggplot(abund, aes(x = SIZE)) +
 abund_hist
 ```
 
+```{r box and whisker of size by site, include = FALSE}
+abund_size_box <- ggplot(abund, aes(x = SITE, y = SIZE)) +
+  geom_boxplot()
 
+abund_size_box
+```
+
+```{r box and whisker of abundance by site, include = FALSE}
+abund_master_clean <- abund_master %>% 
+  filter(SIZE != "-99999")
+abund_count_box <- ggplot(abund_master_clean, aes(x = SITE, y = COUNT)) +
+  geom_boxplot()
+
+abund_count_box
+# ok so probably not a box and whisker 
+```
+
+```{r jitter of abundance by site, include = FALSE}
+abund_count_jitter <- ggplot(abund_master_clean, aes(x = YEAR, y = COUNT)) +
+  geom_jitter() +
+  facet_wrap(~ SITE)
+
+abund_count_jitter
+```
 
 
 
