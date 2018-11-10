@@ -9,29 +9,60 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-##### Data viz:  
-1. box and whisker for abundance and fishing pressure? or jitter?  
+```{r set up libraries and data, include = FALSE}
+# load packages
+library(tidyverse)
+library(vcdExtra)
+
+# read in .csv and get in tidy format
+abund <- read_csv("lobster_size_abundance.csv") %>% 
+  as.data.frame() %>% 
+  expand.dft(freq = "COUNT")
+traps <- read_csv("lobster_traps.csv") %>% 
+  as.data.frame() %>% 
+  expand.dft(freq = "TRAPS")
+
+```
+
+#### Ideas:  
+1. box and whisker for abundance and fishing pressure (because sample size is so big that median is probably a better indicator of central value than mean)? or jitter?  
 2. table of mean lobster sizes  
 3. At Isla Vista and Naples Reef, the two protected MPA sites (with zero fishing pressure), how do lobster sizes
 in 2012 and 2017 compare? At the non-MPA sites? -> t-test of some kind, 
 4. What proportion of observed lobsters at each site are above the legal minimum? Does that proportion differ significantly across the 5 sites? -> chi square
 
-```{r set up, include = FALSE}
-# load packages
-library(tidyverse)
-library(vcdExtra)
+##### 0. exploratory things
+```{r summary table, include = FALSE}
+abund_table <- abund %>% 
+  group_by(SITE) %>% 
+  summarize(
+    mean_size = mean(SIZE),
+    median_size = median(SIZE),
+    count = length(SIZE)
+  )
 
-# read in .csv
-abund <- read_csv("lobster_size_abundance.csv") %>% 
-  expand.dft(freq = "COUNT")
-test <- read_csv("lobster_size_abundance.csv")
-traps <- read_csv("lobster_traps.csv")
+abund_table
 
-# get in tidy format
-abundance <- expand.dft(test, freq = "COUNT")
+trap_table <- traps %>% 
+  group_by(SITE) %>% 
+  filter(SITE == "IVEE" | SITE == "NAPL" | SITE == "AQUE" | SITE == "MOHK" | SITE == "CARP") %>% 
+  summarize(
+    count = length(SITE)
+  )
+
+trap_table
+## no surveys at IVEE or NAPL???? am I doing this wrong??
 ```
 
 
+##### 1. box and whisker 
+```{r abundance histogram}
+abund_hist <- ggplot(abund, aes(x = SIZE)) +
+  geom_histogram() +
+  facet_wrap(~ SITE)
+
+abund_hist
+```
 
 
 
