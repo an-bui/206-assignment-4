@@ -21,7 +21,6 @@ abund <- as.data.frame(abund_master) %>%
   expand.dft(freq = "COUNT")
 
 traps_master <- read_csv("lobster_traps.csv")
-
 traps <- as.data.frame(traps_master) %>% 
   expand.dft(freq = "TRAPS")
 ```
@@ -95,67 +94,109 @@ abund_count_jitter
 
 ##### 2. stats n shit
 ```{r summary table, include = FALSE}
-abund_2012 <- abund %>% 
-  filter(YEAR == "2012",
-         SITE == "IVEE" | SITE == "NAPL")
+# Are mean lobster sizes significantly different in 2012 and 2017 for IVEE? For NAPL?
+# H0: means are not significantly different in 2012 and 2017 for IVEE/NAPL.
+# HA: means are significantly different in 2012 and 2017 for IVEE/NAPL.
 
-abund_2017 <- abund %>% 
-  filter(YEAR == "2017",
-         SITE == "IVEE" | SITE == "NAPL")
+# 1. establish normality: is 2012 IVEE/2017 IVEE and 2012 NAPL/2017 NAPL data normal?
+# 2. test for equal variances
+# 3. run a t-test
+
+abund_IVEE <- abund %>% 
+  filter(YEAR == "2012" | YEAR == "2017",
+         SITE == "IVEE")
+
+abund_NAPL <- abund %>% 
+  filter(YEAR == "2012" | YEAR == "2017",
+         SITE == "NAPL")
 
 abund_both <- abund %>% 
   filter(YEAR == "2012" | YEAR == "2017",
          SITE == "IVEE" | SITE == "NAPL")
 
-abund_table_comparison <- abund_both %>%
+abund_IVEE_table <- abund_IVEE %>% 
+  group_by(YEAR) %>% 
   summarize(
-    mean_size = mean(SIZE)
+    mean_size = mean(SIZE),
+    median_size = median(SIZE),
+    sd_size = sd(SIZE),
+    sample_size = length(SIZE)
   )
 
+abund_NAPL_table <- abund_NAPL %>% 
+  group_by(YEAR) %>% 
+  summarize(
+    mean_size = mean(SIZE),
+    median_size = median(SIZE),
+    sd_size = sd(SIZE),
+    sample_size = length(SIZE)
+  )
+
+abund_IVEE_table
+abund_NAPL_table
+# way more 2017 observations than 2012, is that a problem?
 ```
 
 ```{r size qqplots, include = FALSE}
-size_qq_2012 <- ggplot(abund_2012, aes(sample = SIZE)) +
+size_qq_IVEE <- ggplot(abund_IVEE, aes(sample = SIZE)) +
   geom_qq() +
-  facet_wrap(~ SITE)
+  facet_wrap(~ YEAR)
 
-size_qq_2017 <- ggplot(abund_2017, aes(sample = SIZE)) +
+size_qq_NAPL <- ggplot(abund_NAPL, aes(sample = SIZE)) +
   geom_qq() +
-  facet_wrap(~ SITE)
-
-size_qq_both <- ggplot(abund_both, aes(sample = SIZE)) +
-  geom_qq() +
-  facet_wrap(~ SITE)
+  facet_wrap(~ YEAR)
   
-size_qq_2012
-size_qq_2017
-size_qq_both
-# all look normally distributed
+size_qq_IVEE
+size_qq_NAPL
+# not normally distributed
 ```
 
 ```{r size histograms, include = FALSE}
-abund_IVEE_12 <- abund %>% 
-  filter(SITE == "IVEE" & YEAR == "2012") %>% 
-  select("YEAR", "MONTH", "SITE", "SIZE")
+size_hist_IVEE <- ggplot(abund_IVEE, aes(x = SIZE)) +
+  geom_histogram(bins = 17)
 
-abund_IVEE_17 <- abund %>% 
-  filter(SITE == "IVEE" & YEAR == "2017") %>% 
-  select("YEAR", "MONTH", "SITE", "SIZE")
+size_hist_NAPL <- ggplot(abund_2012, aes(x = SIZE)) +
+  geom_histogram(bins = 10)
 
-abund_NAPL_12 <- abund %>% 
-  filter(SITE == "NAPL" & YEAR == "2012") %>% 
-  select("YEAR", "MONTH", "SITE", "SIZE")
-
-abund_NAPL_17 <- abund %>% 
-  filter(SITE == "NAPL" & YEAR == "2017") %>% 
-  select("YEAR", "MONTH", "SITE", "SIZE")
-
-size_hist_2012 <- ggplot(abund_2012, aes(x = SIZE)) +
-  geom_histogram()
-
-size_hist_2012
+size_hist_IVEE
+size_hist_NAPL
+# not normally distributed
 ```
 
+```{r test for equal variances, include = FALSE}
+size_IVEE_2012 <- abund %>%
+  filter(SITE == "IVEE",
+         YEAR == "2012") %>% 
+  pull(SIZE)
+
+size_IVEE_2017 <- abund %>% 
+  filter(SITE == "IVEE",
+         YEAR == "2012") %>% 
+  pull(SIZE)
+
+size_NAPL_2012 <- abund %>%
+  filter(SITE == "NAPL",
+         YEAR == "2012") %>% 
+  pull(SIZE)
+
+size_NAPL_2017 <- abund %>% 
+  filter(SITE == "NAPL",
+         YEAR == "2017") %>% 
+  pull(SIZE)
+
+IVEE_var <- var.test(size_IVEE_2012, size_IVEE_2017)
+IVEE_var
+# what does p-value of 1 mean???
+NAPL_var <- var.test(size_NAPL_2012, size_IVEE_2017)
+NAPL_var
+# p value 0.9406, variances are equal
+```
+```{r t-test, include = FALSE}
+# this is just for NAPL because idk what is going on with IVEE
+NAPL_t <- t.test(size_NAPL_2012, size_NAPL_2017)
+NAPL_t
+# p value = 0.5373, lob means are not significantly different between 2012 and 2017 at NAPL
+```
 
 
 
