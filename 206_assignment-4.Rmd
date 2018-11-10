@@ -1,0 +1,40 @@
+---
+title: "Assignment 4 Report"
+author: "An Bui"
+date: "11/10/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##### Data viz:  
+1. box and whisker for abundance and fishing pressure? or jitter?  
+2. table of mean lobster sizes  
+3. At Isla Vista and Naples Reef, the two protected MPA sites (with zero fishing pressure), how do lobster sizes
+in 2012 and 2017 compare? At the non-MPA sites? -> t-test of some kind, 
+4. What proportion of observed lobsters at each site are above the legal minimum? Does that proportion differ significantly across the 5 sites? -> chi square
+
+```{r set up, include = FALSE}
+# load packages
+library(tidyverse)
+library(vcdExtra)
+
+# read in .csv
+abund <- read_csv("lobster_size_abundance.csv") %>% 
+  expand.dft(freq = "COUNT")
+test <- read_csv("lobster_size_abundance.csv")
+traps <- read_csv("lobster_traps.csv")
+
+# get in tidy format
+abundance <- expand.dft(test, freq = "COUNT")
+```
+
+
+
+
+
+
+
+
