@@ -92,7 +92,7 @@ abund_count_jitter <- ggplot(abund_master_clean, aes(x = YEAR, y = COUNT)) +
 abund_count_jitter
 ```
 
-##### 2. stats n shit
+##### 2. stats n shit: IVEE and NAPL
 ```{r summary table, include = FALSE}
 # Are mean lobster sizes significantly different in 2012 and 2017 for IVEE? For NAPL?
 # H0: means are not significantly different in 2012 and 2017 for IVEE/NAPL.
@@ -102,11 +102,11 @@ abund_count_jitter
 # 2. test for equal variances
 # 3. run a t-test
 
-abund_IVEE <- abund %>% 
+abund_ivee <- abund %>% 
   filter(YEAR == "2012" | YEAR == "2017",
          SITE == "IVEE")
 
-abund_NAPL <- abund %>% 
+abund_napl <- abund %>% 
   filter(YEAR == "2012" | YEAR == "2017",
          SITE == "NAPL")
 
@@ -114,7 +114,7 @@ abund_both <- abund %>%
   filter(YEAR == "2012" | YEAR == "2017",
          SITE == "IVEE" | SITE == "NAPL")
 
-abund_IVEE_table <- abund_IVEE %>% 
+abund_ivee_table <- abund_ivee %>% 
   group_by(YEAR) %>% 
   summarize(
     mean_size = mean(SIZE),
@@ -122,8 +122,9 @@ abund_IVEE_table <- abund_IVEE %>%
     sd_size = sd(SIZE),
     sample_size = length(SIZE)
   )
+abund_ivee_table
 
-abund_NAPL_table <- abund_NAPL %>% 
+abund_napl_table <- abund_napl %>% 
   group_by(YEAR) %>% 
   summarize(
     mean_size = mean(SIZE),
@@ -131,71 +132,85 @@ abund_NAPL_table <- abund_NAPL %>%
     sd_size = sd(SIZE),
     sample_size = length(SIZE)
   )
-
-abund_IVEE_table
-abund_NAPL_table
+abund_napl_table
 # way more 2017 observations than 2012, is that a problem?
 ```
 
 ```{r size qqplots, include = FALSE}
-size_qq_IVEE <- ggplot(abund_IVEE, aes(sample = SIZE)) +
+size_qq_ivee <- ggplot(abund_ivee, aes(sample = SIZE)) +
   geom_qq() +
   facet_wrap(~ YEAR)
+size_qq_ivee
+# kinda looks normal?
 
-size_qq_NAPL <- ggplot(abund_NAPL, aes(sample = SIZE)) +
+size_qq_napl <- ggplot(abund_napl, aes(sample = SIZE)) +
   geom_qq() +
   facet_wrap(~ YEAR)
-  
-size_qq_IVEE
-size_qq_NAPL
-# not normally distributed
+size_qq_napl
+# kinda looks normal?
 ```
 
 ```{r size histograms, include = FALSE}
-size_hist_IVEE <- ggplot(abund_IVEE, aes(x = SIZE)) +
+size_hist_ivee <- ggplot(abund_ivee, aes(x = SIZE)) +
   geom_histogram(bins = 17)
+size_hist_ivee
 
-size_hist_NAPL <- ggplot(abund_2012, aes(x = SIZE)) +
+size_hist_napl <- ggplot(abund_2012, aes(x = SIZE)) +
   geom_histogram(bins = 10)
-
-size_hist_IVEE
-size_hist_NAPL
+size_hist_napl
 # not normally distributed
 ```
 
 ```{r test for equal variances, include = FALSE}
-size_IVEE_2012 <- abund %>%
+size_ivee_2012 <- abund %>%
   filter(SITE == "IVEE",
          YEAR == "2012") %>% 
   pull(SIZE)
 
-size_IVEE_2017 <- abund %>% 
+size_ivee_2017 <- abund %>% 
   filter(SITE == "IVEE",
          YEAR == "2012") %>% 
   pull(SIZE)
 
-size_NAPL_2012 <- abund %>%
+size_napl_2012 <- abund %>%
   filter(SITE == "NAPL",
          YEAR == "2012") %>% 
   pull(SIZE)
 
-size_NAPL_2017 <- abund %>% 
+size_napl_2017 <- abund %>% 
   filter(SITE == "NAPL",
          YEAR == "2017") %>% 
   pull(SIZE)
 
-IVEE_var <- var.test(size_IVEE_2012, size_IVEE_2017)
-IVEE_var
+ivee_var <- var.test(size_ivee_2012, size_ivee_2017)
+ivee_var
 # what does p-value of 1 mean???
-NAPL_var <- var.test(size_NAPL_2012, size_IVEE_2017)
-NAPL_var
-# p value 0.9406, variances are equal
+napl_var <- var.test(size_napl_2012, size_napl_2017)
+napl_var
+# p value 0.7685, variances are equal so use Student's not Welch
 ```
+
 ```{r t-test, include = FALSE}
-# this is just for NAPL because idk what is going on with IVEE
-NAPL_t <- t.test(size_NAPL_2012, size_NAPL_2017)
-NAPL_t
+# idk what's going on with IVEE but did it anyway
+ivee_t <- t.test(size_ivee_2012, size_ivee_2017, var.equal = TRUE)
+ivee_t
+
+napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
+napl_t
 # p value = 0.5373, lob means are not significantly different between 2012 and 2017 at NAPL
+```
+
+##### 3. stats n shit: non-MPA sites
+```{r}
+# Are mean lobster sizes significantly different in 2012 and 2017 for AQUE? MOHK? CARP?
+# H0: means are not significantly different in 2012 and 2017 for IVEE/NAPL.
+# HA: means are significantly different in 2012 and 2017 for IVEE/NAPL.
+
+# 1. establish normality: is 2012 IVEE/2017 IVEE and 2012 NAPL/2017 NAPL data normal?
+# 2. test for equal variances
+# 3. run a t-test
+
+
 ```
 
 
