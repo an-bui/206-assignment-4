@@ -13,22 +13,24 @@ knitr::opts_chunk$set(echo = TRUE)
 # load packages
 library(tidyverse)
 library(vcdExtra)
+library(kableExtra)
 
 # read in .csv and get in tidy format
 abund_master <- read_csv("lobster_size_abundance.csv")
 abund <- as.data.frame(abund_master) %>% 
   expand.dft(freq = "COUNT")
+
 traps_master <- read_csv("lobster_traps.csv")
+
 traps <- as.data.frame(traps_master) %>% 
   expand.dft(freq = "TRAPS")
-
 ```
 
 #### Ideas:  
 1. box and whisker for abundance and fishing pressure (because sample size is so big that median is probably a better indicator of central value than mean)? or jitter?  
-2. table of mean lobster sizes  
+2. table of mean lobster sizes (or box and whisker? code below)
 3. At Isla Vista and Naples Reef, the two protected MPA sites (with zero fishing pressure), how do lobster sizes
-in 2012 and 2017 compare? At the non-MPA sites? -> t-test of some kind, 
+in 2012 and 2017 compare? At the non-MPA sites? -> t-test for IVEE and NAPL, ANOVA for AQUE, MOHK, CARP
 4. What proportion of observed lobsters at each site are above the legal minimum? Does that proportion differ significantly across the 5 sites? -> chi square
 
 ##### 0. exploratory things
@@ -54,8 +56,7 @@ trap_table
 ## no surveys at IVEE or NAPL???? am I doing this wrong??
 ```
 
-
-##### 1. box and whisker 
+##### 1. code for random shit
 ```{r abundance histogram, include = FALSE}
 # just wanted to see what this looked like
 abund_hist <- ggplot(abund, aes(x = SIZE)) +
@@ -75,6 +76,8 @@ abund_size_box
 ```{r box and whisker of abundance by site, include = FALSE}
 abund_master_clean <- abund_master %>% 
   filter(SIZE != "-99999")
+# because ?
+
 abund_count_box <- ggplot(abund_master_clean, aes(x = SITE, y = COUNT)) +
   geom_boxplot()
 
@@ -88,6 +91,69 @@ abund_count_jitter <- ggplot(abund_master_clean, aes(x = YEAR, y = COUNT)) +
   facet_wrap(~ SITE)
 
 abund_count_jitter
+```
+
+##### 2. stats n shit
+```{r summary table, include = FALSE}
+abund_2012 <- abund %>% 
+  filter(YEAR == "2012",
+         SITE == "IVEE" | SITE == "NAPL")
+
+abund_2017 <- abund %>% 
+  filter(YEAR == "2017",
+         SITE == "IVEE" | SITE == "NAPL")
+
+abund_both <- abund %>% 
+  filter(YEAR == "2012" | YEAR == "2017",
+         SITE == "IVEE" | SITE == "NAPL")
+
+abund_table_comparison <- abund_both %>%
+  summarize(
+    mean_size = mean(SIZE)
+  )
+
+```
+
+```{r size qqplots, include = FALSE}
+size_qq_2012 <- ggplot(abund_2012, aes(sample = SIZE)) +
+  geom_qq() +
+  facet_wrap(~ SITE)
+
+size_qq_2017 <- ggplot(abund_2017, aes(sample = SIZE)) +
+  geom_qq() +
+  facet_wrap(~ SITE)
+
+size_qq_both <- ggplot(abund_both, aes(sample = SIZE)) +
+  geom_qq() +
+  facet_wrap(~ SITE)
+  
+size_qq_2012
+size_qq_2017
+size_qq_both
+# all look normally distributed
+```
+
+```{r size histograms, include = FALSE}
+abund_IVEE_12 <- abund %>% 
+  filter(SITE == "IVEE" & YEAR == "2012") %>% 
+  select("YEAR", "MONTH", "SITE", "SIZE")
+
+abund_IVEE_17 <- abund %>% 
+  filter(SITE == "IVEE" & YEAR == "2017") %>% 
+  select("YEAR", "MONTH", "SITE", "SIZE")
+
+abund_NAPL_12 <- abund %>% 
+  filter(SITE == "NAPL" & YEAR == "2012") %>% 
+  select("YEAR", "MONTH", "SITE", "SIZE")
+
+abund_NAPL_17 <- abund %>% 
+  filter(SITE == "NAPL" & YEAR == "2017") %>% 
+  select("YEAR", "MONTH", "SITE", "SIZE")
+
+size_hist_2012 <- ggplot(abund_2012, aes(x = SIZE)) +
+  geom_histogram()
+
+size_hist_2012
 ```
 
 
