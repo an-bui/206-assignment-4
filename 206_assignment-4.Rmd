@@ -211,7 +211,17 @@ napl_t
 # 2. test for equal variances for Student's or Welch
 # 3. run a t-test
 
+abund_aque <- abund %>% 
+  filter(YEAR == "2012" | YEAR == "2017",
+         SITE == "AQUE")
 
+abund_mohk <- abund %>% 
+  filter(YEAR == "2012" | YEAR == "2017",
+         SITE == "MOHK")
+
+abund_carp <- abund %>% 
+  filter(YEAR == "2012" | YEAR == "2017",
+         SITE == "CARP")
 
 
 
