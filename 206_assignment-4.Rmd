@@ -37,22 +37,33 @@ in 2012 and 2017 compare? At the non-MPA sites? -> t-test for IVEE and NAPL, ANO
 abund_table <- abund %>% 
   group_by(SITE) %>% 
   summarize(
-    mean_size = mean(SIZE),
-    median_size = median(SIZE),
+    mean_size = round(mean(SIZE), 2),
+    median_size = round(median(SIZE), 2),
     count = length(SIZE)
-  )
+  ) %>% 
+  mutate(site_full = case_when(
+      SITE == "AQUE" ~ "Arroyo Quemado",
+      SITE == "CARP" ~ "Carpinteria",
+      SITE == "IVEE" ~ "Isla Vista",
+      SITE == "MOHK" ~ "Mohawk Reef",
+      SITE == "NAPL" ~ "Naples Reef"
+    )
+  ) %>% 
+  select(site_full, mean_size, median_size, count)
 
-abund_table
+abund_table_columns = c("Site", "Mean size", "Median size", "Sample size")
+
+kable(abund_table,
+      col.names = abund_table_columns)
 
 trap_table <- traps %>% 
   group_by(SITE) %>% 
-  filter(SITE == "IVEE" | SITE == "NAPL" | SITE == "AQUE" | SITE == "MOHK" | SITE == "CARP") %>% 
+  filter(SITE == "AQUE" | SITE == "MOHK" | SITE == "CARP") %>% 
   summarize(
     count = length(SITE)
   )
 
 trap_table
-## no surveys at IVEE or NAPL???? am I doing this wrong??
 ```
 
 ##### 1. code for random shit
@@ -93,7 +104,7 @@ abund_count_jitter
 ```
 
 ##### 2. stats n shit: IVEE and NAPL
-```{r summary table, include = FALSE}
+```{r summary stats, include = FALSE}
 # Are mean lobster sizes significantly different in 2012 and 2017 for IVEE? For NAPL?
 # H0: means are not significantly different in 2012 and 2017 for IVEE/NAPL.
 # HA: means are significantly different in 2012 and 2017 for IVEE/NAPL.
@@ -202,7 +213,7 @@ napl_t
 ```
 
 ##### 3. stats n shit: non-MPA sites
-```{r}
+```{r nonMPA summary tables, include = FALSE}
 # Are mean lobster sizes significantly different in 2012 and 2017 for AQUE? MOHK? CARP?
 # H0: means are not significantly different in 2012 and 2017 for IVEE/NAPL.
 # HA: means are significantly different in 2012 and 2017 for IVEE/NAPL.
@@ -223,8 +234,35 @@ abund_carp <- abund %>%
   filter(YEAR == "2012" | YEAR == "2017",
          SITE == "CARP")
 
+abund_aque_table <- abund_aque %>% 
+  group_by(YEAR) %>% 
+  summarize(
+    mean_size = round(mean(SIZE),2),
+    median_size = round(median(SIZE),2),
+    sd_size = round(sd(SIZE),2),
+    sample_size = length(SIZE)
+  )
+abund_aque_table
 
+abund_mohk_table <- abund_mohk %>% 
+  group_by(YEAR) %>% 
+  summarize(
+    mean_size = round(mean(SIZE),2),
+    median_size = round(median(SIZE),2),
+    sd_size = round(sd(SIZE),2),
+    sample_size = length(SIZE)
+  )
+abund_mohk_table
 
+abund_carp_table <- abund_carp %>% 
+  group_by(YEAR) %>% 
+  summarize(
+    mean_size = round(mean(SIZE),2),
+    median_size = round(median(SIZE),2),
+    sd_size = round(sd(SIZE),2),
+    sample_size = length(SIZE)
+  )
+abund_carp_table
 ```
 
 
