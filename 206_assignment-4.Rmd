@@ -218,8 +218,8 @@ napl_t
 ##### 3. stats n shit: non-MPA sites
 ```{r nonMPA summary tables, include = FALSE}
 # Are mean lobster sizes significantly different in 2012 and 2017 for AQUE? MOHK? CARP?
-# H0: means are not significantly different in 2012 and 2017 for IVEE/NAPL.
-# HA: means are significantly different in 2012 and 2017 for IVEE/NAPL.
+# H0: means are not significantly different in 2012 and 2017 for AQUE/MOHK/CARP.
+# HA: means are significantly different in 2012 and 2017 for AQUE/MOHK/CARP.
 
 # 1. establish normality: is 2012 IVEE/2017 IVEE and 2012 NAPL/2017 NAPL data normal?
 # 2. test for equal variances for Student's or Welch
@@ -268,5 +268,45 @@ abund_carp_table <- abund_carp %>%
 abund_carp_table
 ```
 
+```{r nonMPA qqplots, include = FALSE}
+size_qq_aque <- ggplot(abund_aque, aes(sample = SIZE)) +
+  geom_qq() +
+  facet_wrap(~ YEAR)
 
+size_qq_aque
+# looks normal
+
+size_qq_mohk <- ggplot(abund_mohk, aes(sample = SIZE)) +
+  geom_qq() +
+  facet_wrap(~ YEAR)
+
+size_qq_mohk
+# looks normal
+
+size_qq_carp <- ggplot(abund_carp, aes(sample = SIZE)) +
+  geom_qq() +
+  facet_wrap(~ YEAR)
+
+size_qq_carp
+# looks normal
+```
+
+```{r nonMPA histograms, include = FALSE}
+size_hist_aque <- ggplot(abund_aque, aes(x = SIZE)) +
+  geom_histogram(bins = 9)
+
+size_hist_aque
+# normal ish?
+
+size_hist_mohk <- ggplot(abund_mohk, aes(x = SIZE)) +
+  geom_histogram(bins = 13)
+
+size_hist_mohk
+# looks normal
+
+size_hist_carp <- ggplot(abund_carp, aes(x = SIZE)) +
+  geom_histogram(bins = 13)
+
+size_hist_carp
+```
 
