@@ -30,7 +30,9 @@ traps <- as.data.frame(traps_master) %>%
 2. table of mean lobster sizes (or box and whisker? code below)
 3. At Isla Vista and Naples Reef, the two protected MPA sites (with zero fishing pressure), how do lobster sizes
 in 2012 and 2017 compare? At the non-MPA sites? -> t-test for IVEE and NAPL, ANOVA for AQUE, MOHK, CARP
-4. What proportion of observed lobsters at each site are above the legal minimum? Does that proportion differ significantly across the 5 sites? -> chi square
+4. What proportion of observed lobsters at each site are above the legal minimum? Does that proportion differ significantly across the 5 sites? -> chi square  
+
+Thoughts are that we can just make a bunch of stuff and go through and pick what's useful and what's not?
 
 ##### 0. exploratory things
 ```{r summary table, include = FALSE}
@@ -81,6 +83,43 @@ abund_size_box <- ggplot(abund, aes(x = SITE, y = SIZE)) +
   geom_boxplot()
 
 abund_size_box
+```
+
+```{r box and whisker of size by site in 2017 only, include = FALSE}
+abund_2017 <- abund %>% 
+  filter(YEAR == "2017")
+
+size_box_2017 <- ggplot(abund_2017, aes(x = SITE, y = SIZE)) +
+  geom_boxplot()
+
+size_box_2017
+```
+
+```{r table of size by site in 2017 only, include = FALSE}
+size_table_2017 <- abund_2017 %>% 
+  group_by(SITE) %>% 
+  summarize(
+    mean = round(mean(SIZE), 2),
+    median = round(median(SIZE), 2),
+    sd = round(sd(SIZE), 2),
+    n = length(SIZE)
+    ) %>% 
+  mutate(
+    full_site = case_when(
+      SITE == "AQUE" ~ "Arroyo Quemado",
+      SITE == "IVEE" ~ "Isla Vista", 
+      SITE == "MOHK" ~ "Mohawk",
+      SITE == "CARP" ~ "Carpinteria",
+      SITE == "NAPL" ~ "Naples Reef"
+    )
+  ) %>% 
+  select(full_site, mean, median, sd, n)
+
+size_table_2017_columns = c("Site", "Mean length", "Median length", "Standard deviation", "Sample size")
+
+kable(size_table_2017,
+      col.names = size_table_2017_columns) %>% 
+  kable_styling(bootstrap_options = "striped")
 ```
 
 ```{r box and whisker of abundance by site, include = FALSE}
