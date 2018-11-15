@@ -295,28 +295,25 @@ abund_df <- abund %>%
 # boxplot of sizes in 2012 & 2017 in MPA & non-MPA sites
 ##############################
 
-# sizes_1217_year_plot <- ggplot(abund_2012_2017, aes(x = YEAR, y = SIZE, fill = YEAR)) +
-#   geom_boxplot(aes(fill = YEAR))+
-#   #facet_wrap(~protection) +
-#   facet_wrap(~ site_full) +
-#   labs(x = "Site", y = "Carapace Length (mm)") +
-#   theme_classic() + 
-#   theme(axis.text = element_text(color = "black"), 
-#           panel.border = element_rect(colour = "black", fill = NA, size = 0.7), 
-#           legend.position = "none")
-# 
-# sizes_1217_year_plot # facet wrap by year
+abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-sizes_1217_site_plot <- ggplot(abund_2012_2017, aes(x = YEAR, y = SIZE)) +
+abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
   geom_boxplot(aes(group = YEAR, fill = YEAR)) +
   facet_grid(~ site_full) +
   labs(x = "Site", y = "Carapace Length (mm)") +
-  theme_classic() 
-  # theme(axis.text = element_text(color = "black"), 
-  #         panel.border = element_rect(colour = "black", fill = NA, size = 0.7), 
-  #         legend.position = "none")
+  theme_classic() +
+  theme(
+    axis.title.x=element_blank(),
+    axis.text.x=element_blank(),
+    axis.ticks.x=element_blank(),
+    legend.position="none"
+  ) 
+  
+  
+grid.brackets(220, bottom_y,80, bottom_y, lwd=2, col="red")
 
-sizes_1217_site_plot 
+grid.locator("native")
+bottom_y = 154.125
 ```
 
 ```{r}
