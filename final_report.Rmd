@@ -182,6 +182,42 @@ size_ph
 
 ```{r}
 # PART 3. AT IVEE AND NAPL (MPAs), HOW DO LOBSTER SIZES IN 2012 AND 2017 COMPARE? AT NON-MPA SITES?
+
+##############################
+# comparing 2012 and 2017 at IVEE and NAPL
+##############################
+
+size_ivee_2012 <- abund %>%
+  filter(SITE == "IVEE",
+         YEAR == "2012") %>% 
+  pull(SIZE)
+
+size_ivee_2017 <- abund %>% 
+  filter(SITE == "IVEE",
+         YEAR == "2012") %>% 
+  pull(SIZE)
+
+size_napl_2012 <- abund %>%
+  filter(SITE == "NAPL",
+         YEAR == "2012") %>% 
+  pull(SIZE)
+
+size_napl_2017 <- abund %>% 
+  filter(SITE == "NAPL",
+         YEAR == "2017") %>% 
+  pull(SIZE)
+
+# idk what's going on with IVEE but did it anyway
+ivee_t <- t.test(size_ivee_2012, size_ivee_2017, var.equal = TRUE)
+ivee_t
+# p value = 1?? lob means are not significantly different between 2012 and 2017 at IVEE
+
+napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
+napl_t
+# p value = 0.5373, lob means are not significantly different between 2012 and 2017 at NAPL
+
+# In a report, maybe: Between 2012 and 2017, mean lobster size did not change significantly at either Isla Vista (t(df) = statistic, p = statistic, a = 0.05) or Naples Reef (t(df) = statistic, p = statistic, a = 0.05).
+
 ```
 
 ```{r}
