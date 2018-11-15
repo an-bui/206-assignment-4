@@ -143,6 +143,10 @@ kable(size_table_2017,
       col.names = size_table_2017_columns) %>% 
   kable_styling(bootstrap_options = "striped")
 
+##############################
+# box and whisker plot of size
+##############################
+
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   geom_boxplot(aes(fill = site_full)) +
   #geom_jitter() +
@@ -154,6 +158,26 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   scale_fill_manual(values = wes_palette(n = 5, name = "Cavalcanti1"))
 
 size_2017_boxplot
+
+##############################
+# test for variances, ANOVA, Tukey's HSD
+##############################
+
+lob_variances <- abund_2017 %>% 
+  group_by(SITE) %>% 
+  summarize(
+    lob_var = var(SIZE)
+  )
+
+lob_variances 
+# largest variance is no greater than 4x smallest variance
+
+size_anova <- aov(SIZE ~ SITE, data = abund_2017)
+summary(size_anova)
+
+size_ph <- TukeyHSD(size_anova)
+size_ph 
+# so the only ones that are different are NAPL-CARP and NAPL-IVEE
 ```
 
 ```{r}
