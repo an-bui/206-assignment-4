@@ -106,7 +106,16 @@ abund_traps_plot
 # size table
 ##############################
 abund_2017 <- abund %>% 
-  filter(YEAR == "2017")
+  filter(YEAR == "2017") %>% 
+  mutate(site_full = case_when( # expand to full length names
+      SITE == "AQUE" ~ "Arroyo Quemado",
+      SITE == "CARP" ~ "Carpinteria",
+      SITE == "IVEE" ~ "Isla Vista",
+      SITE == "MOHK" ~ "Mohawk Reef",
+      SITE == "NAPL" ~ "Naples Reef"
+    )
+  ) %>% 
+  select(YEAR, SITE, site_full, SIZE)
 
 size_table_2017 <- abund_2017 %>% 
   group_by(SITE) %>% 
@@ -134,6 +143,17 @@ kable(size_table_2017,
       col.names = size_table_2017_columns) %>% 
   kable_styling(bootstrap_options = "striped")
 
+size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
+  geom_boxplot(aes(fill = site_full)) +
+  #geom_jitter() +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black"), 
+          panel.border = element_rect(colour = "black", fill=NA, size=0.8), 
+          legend.position = "none") +
+  labs(x = "Site", y = "Carapace Length (mm)") +
+  scale_fill_manual(values = wes_palette(n = 5, name = "Cavalcanti1"))
+
+size_2017_boxplot
 ```
 
 ```{r}
