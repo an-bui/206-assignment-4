@@ -1,0 +1,15 @@
+---
+title: "Final report"
+author: "An Bui, Sam Csik"
+date: "11/14/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+ 
+Clean shit only!
+
+
+
