@@ -102,6 +102,34 @@ abund_traps_plot
 ```{r}
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
 
+##############################
+# size table
+##############################
+size_table_2017 <- abund_2017 %>% 
+  group_by(SITE) %>% 
+  summarize(
+    mean = round(mean(SIZE), 2),
+    sd = round(sd(SIZE), 2),
+    n = length(SIZE)
+    ) %>% 
+  mutate(
+    full_site = case_when(
+      SITE == "AQUE" ~ "Arroyo Quemado",
+      SITE == "IVEE" ~ "Isla Vista", 
+      SITE == "MOHK" ~ "Mohawk",
+      SITE == "CARP" ~ "Carpinteria",
+      SITE == "NAPL" ~ "Naples Reef"
+    )
+  ) %>% 
+  select(full_site, mean, sd, n)
+
+size_table_2017$full_site <- factor(size_table_2017$full_site, levels = c("Isla Vista", "Naples Reef", "Arroyo Quemado", "Mohawk", "Carpinteria"))
+
+size_table_2017_columns = c("Site", "Mean length", "Standard deviation", "Sample size")
+
+kable(size_table_2017,
+      col.names = size_table_2017_columns) %>% 
+  kable_styling(bootstrap_options = "striped")
 
 ```
 
