@@ -105,6 +105,9 @@ abund_traps_plot
 ##############################
 # size table
 ##############################
+abund_2017 <- abund %>% 
+  filter(YEAR == "2017")
+
 size_table_2017 <- abund_2017 %>% 
   group_by(SITE) %>% 
   summarize(
