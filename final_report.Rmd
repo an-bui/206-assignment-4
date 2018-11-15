@@ -101,6 +101,8 @@ abund_traps_plot
 
 ```{r}
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
+
+
 ```
 
 ```{r}
