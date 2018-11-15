@@ -3,6 +3,8 @@ title: "Final report"
 author: "An Bui, Sam Csik"
 date: "11/14/2018"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -184,8 +186,7 @@ size_anova <- aov(SIZE ~ SITE, data = abund_2017)
 summary(size_anova)
 
 size_ph <- TukeyHSD(size_anova)
-size_ph 
-# so the only ones that are different are NAPL-CARP and NAPL-IVEE
+size_ph  # so the only ones that are different are NAPL-CARP and NAPL-IVEE
 ```
 
 ```{r}
@@ -220,12 +221,10 @@ size_napl_2017 <- abund %>%
 ##############################
 
 ivee_t <- t.test(size_ivee_2012, size_ivee_2017, var.equal = TRUE) # idk what's going on with IVEE but did it anyway
-ivee_t
-# p value = 1?? lob means are not significantly different between 2012 and 2017 at IVEE
+ivee_t # p value = 1?? lob means are not significantly different between 2012 and 2017 at IVEE
 
 napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
-napl_t
-# p value = 0.5373, lob means are not significantly different between 2012 and 2017 at NAPL
+napl_t # p value = 0.5373, lob means are not significantly different between 2012 and 2017 at NAPL
 
 # In a report, maybe: Between 2012 and 2017, mean lobster size did not change significantly at either Isla Vista (t(df) = statistic, p = statistic, a = 0.05) or Naples Reef (t(df) = statistic, p = statistic, a = 0.05).
 
@@ -301,16 +300,19 @@ abund_df <- abund %>%
 abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
-  geom_boxplot(aes(group = YEAR, fill = YEAR)) +
+  geom_boxplot(aes(group = YEAR, fill = factor(YEAR))) +
+  scale_fill_manual(breaks = c("2012", "2017"),
+                               values = c("white", "darkgrey")) +
   facet_grid(~ site_full) +
   labs(x = "Site", y = "Carapace Length (mm)") +
   theme_classic() +
-  theme(
+   theme(
     axis.title.x=element_blank(),
     axis.text.x=element_blank(),
     axis.ticks.x=element_blank(),
-    legend.position="none"
-  ) 
+    legend.position="none",
+    panel.border = element_rect(colour = "black", fill=NA, size=0.7)
+  )
   
   
 grid.brackets(220, bottom_y,80, bottom_y, lwd=2, col="red")
