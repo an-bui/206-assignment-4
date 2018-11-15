@@ -28,6 +28,7 @@ library(vcdExtra)
 library(kableExtra)
 library(onewaytests)
 library(reshape2)
+library(lemon)
 library(wesanderson)
 
 # read in lobster_size_abundance.csv file and get into tidy format
@@ -301,8 +302,7 @@ abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples 
 
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
   geom_boxplot(aes(group = YEAR, fill = factor(YEAR))) +
-  scale_fill_manual(breaks = c("2012", "2017"),
-                               values = c("white", "darkgrey")) +
+  scale_fill_manual(breaks = c("2012", "2017"),values = c("white", "darkgrey"), name = "Year") +
   facet_grid(~ site_full) +
   labs(x = "Site", y = "Carapace Length (mm)") +
   theme_classic() +
@@ -310,15 +310,16 @@ abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
     axis.title.x=element_blank(),
     axis.text.x=element_blank(),
     axis.ticks.x=element_blank(),
-    legend.position="none",
-    panel.border = element_rect(colour = "black", fill=NA, size=0.7)
-  )
+    #legend.position="none",
+    panel.border = element_rect(colour = "black", fill=NA, size=0.7),
+    strip.background = element_rect(fill = "grey")
+  ) 
   
   
-grid.brackets(220, bottom_y,80, bottom_y, lwd=2, col="red")
-
-grid.locator("native")
-bottom_y = 154.125
+# grid.brackets(220, bottom_y,80, bottom_y, lwd=2, col="red")
+# 
+# grid.locator("native")
+# bottom_y = 154.125
 ```
 
 ```{r}
