@@ -285,9 +285,22 @@ abund_2012_2017 <- abund %>%
       SITE == "NAPL" ~ "Naples Reef"
     )
   ) %>% 
-  select(YEAR, SITE, site_full, SIZE, protection)
+  select(YEAR, site_full, SIZE, protection)
 
+abund_2012_2017 <- abund %>% 
+  group_by(YEAR, SITE) %>% # group by year, then site
+  filter(YEAR == "2012" | YEAR == "2017") %>% 
+  mutate(site_full = case_when( 
+      SITE == "AQUE" ~ "Arroyo Quemado",
+      SITE == "CARP" ~ "Carpinteria",
+      SITE == "IVEE" ~ "Isla Vista",
+      SITE == "MOHK" ~ "Mohawk Reef",
+      SITE == "NAPL" ~ "Naples Reef"
+    )
+  ) %>% 
+  select(YEAR, site_full, SIZE)
 
+stacked_data <- melt(data = abund_2012_2017, na.rm = TRUE, value.name = "SIZE")
 # abund_stacked <- abund_2012_2017 %>% 
 #   melt(id = c("YEAR", "SITE"))
   
@@ -296,7 +309,7 @@ abund_2012_2017 <- abund %>%
 ##############################
 
 sizes_1217_plot <- ggplot(abund_2012_2017, aes(x = site_full, y = SIZE, fill = YEAR)) +
-  geom_boxplot()+
+  geom_boxplot(aes(fill = YEAR))+
   #facet_wrap(~protection) +
   #facet_wrap(~ YEAR) +
   labs(x = "Site", y = "Carapace Length (mm)") +
@@ -306,6 +319,7 @@ sizes_1217_plot <- ggplot(abund_2012_2017, aes(x = site_full, y = SIZE, fill = Y
           legend.position = "none")
 
 sizes_1217_plot 
+
 ```
 
 ```{r}
