@@ -11,5 +11,41 @@ knitr::opts_chunk$set(echo = TRUE)
  
 Clean shit only!
 
+```{r, include = FALSE}
+# load required packages
+library(tidyverse)
+library(car)
+library(vcdExtra)
+library(kableExtra)
+library(onewaytests)
+library(wesanderson)
 
+# read in lobster_size_abundance.csv file and get into tidy format
+size_abund <- read_csv("lobster_size_abundance.csv")
+
+abund <- as.data.frame(size_abund) %>% 
+  expand.dft(freq = "COUNT") # expands freq. table to df representing individual obs. in the table
+
+# read in lobster_traps.csv file and get into tidy format
+traps_master <- read_csv("lobster_traps.csv")
+
+traps <- as.data.frame(traps_master) %>% 
+  expand.dft(freq = "TRAPS")
+```
+
+```{r}
+# PART 1. DESCRIBE TRENDS IN LOBSTER ABUNDANCE AND FISHING PRESSURE AT THE 5 LOCATIONS FROM 2012-2017
+```
+
+```{r}
+# PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
+```
+
+```{r}
+# PART 3. AT IVEE AND NAPL (MPAs), HOW DO LOBSTER SIZES IN 2012 AND 2017 COMPARE? AT NON-MPA SITES?
+```
+
+```{r}
+# PART 4. WHAT PROPORTION OF OBSERVED LOBSTERS AT EACH SITE ARE ABOVE THE LEGAL MINIMUM (82.6mm)
+```
 
