@@ -34,7 +34,7 @@ in 2012 and 2017 compare? At the non-MPA sites? -> t-test for IVEE and NAPL, ANO
 
 Thoughts are that we can just make a bunch of stuff and go through and pick what's useful and what's not?
 
-##### 0. exploratory things
+##### exploratory things
 ```{r summary table, include = FALSE}
 abund_table <- abund %>% 
   group_by(SITE) %>% 
@@ -68,7 +68,7 @@ trap_table <- traps %>%
 trap_table
 ```
 
-##### 1. code for random shit
+##### code for random shit
 ```{r abundance histogram, include = FALSE}
 # just wanted to see what this looked like
 abund_hist <- ggplot(abund, aes(x = SIZE)) +
@@ -122,27 +122,7 @@ kable(size_table_2017,
   kable_styling(bootstrap_options = "striped")
 ```
 
-```{r box and whisker of abundance by site, include = FALSE}
-abund_master_clean <- abund_master %>% 
-  filter(SIZE != "-99999")
-# because ?
-
-abund_count_box <- ggplot(abund_master_clean, aes(x = SITE, y = COUNT)) +
-  geom_boxplot()
-
-abund_count_box
-# ok so probably not a box and whisker 
-```
-
-```{r jitter of abundance by site, include = FALSE}
-abund_count_jitter <- ggplot(abund_master_clean, aes(x = YEAR, y = COUNT)) +
-  geom_jitter() +
-  facet_wrap(~ SITE)
-
-abund_count_jitter
-```
-
-##### 2. stats n shit: IVEE and NAPL
+##### stats n shit: IVEE and NAPL (part 3)
 ```{r summary stats, include = FALSE}
 # Are mean lobster sizes significantly different in 2012 and 2017 for IVEE? For NAPL?
 # H0: means are not significantly different in 2012 and 2017 for IVEE/NAPL.
@@ -254,7 +234,7 @@ napl_t
 # In a report, maybe: Between 2012 and 2017, mean lobster size did not change significantly at either Isla Vista (t(df) = statistic, p = statistic, a = 0.05) or Naples Reef (t(df) = statistic, p = statistic, a = 0.05).
 ```
 
-##### 3. stats n shit: non-MPA sites
+##### stats n shit: non-MPA sites (part 3)
 ```{r nonMPA summary tables, include = FALSE}
 # Are mean lobster sizes significantly different in 2012 and 2017 for AQUE? MOHK? CARP?
 # H0: means are not significantly different in 2012 and 2017 for AQUE/MOHK/CARP.
@@ -347,5 +327,24 @@ size_hist_carp <- ggplot(abund_carp, aes(x = SIZE)) +
   geom_histogram(bins = 13)
 
 size_hist_carp
+```
+
+##### lob mean comparisons (part 2)
+```{r lob size ANOVA, include = FALSE}
+size_anova <- aov(SIZE ~ SITE, data = abund_2017)
+summary(size_anova)
+
+size_ph <- TukeyHSD(size_anova)
+size_ph
+```
+
+```{r test for variances of lob size, include = FALSE}
+CL_variances <- abund_2017 %>% 
+  group_by(SITE) %>% 
+  summarize(
+    lob_var = var(SIZE)
+  )
+
+CL_variances
 ```
 
