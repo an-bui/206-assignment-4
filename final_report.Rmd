@@ -310,5 +310,31 @@ sizes_1217_plot
 
 ```{r}
 # PART 4. WHAT PROPORTION OF OBSERVED LOBSTERS AT EACH SITE ARE ABOVE THE LEGAL MINIMUM (82.6mm)
+
+##############################
+# make new table with sizes above and below legal limit
+##############################
+
+abund_2017_size <- abund_2017 %>% 
+  mutate(legal = case_when(
+    SIZE > 82.6 ~ "below",
+    SIZE < 82.6 ~ "above"
+  )) %>% 
+  count(SITE, legal) %>% 
+  spread(legal, n) %>% 
+  select(-SITE)
+
+rownames(abund_2017_size) <- c("Arroyo Quemado", "Carpinteria", "Isla Vista Reef", "Mohawk", "Naples Reef")
+  
+##############################
+# x2 test
+##############################
+
+lob_prop <- prop.table(as.matrix(abund_2017_size), 1)
+lob_prop
+
+lob_x2 <- chisq.test(abund_2017_size)
+lob_x2
+# proportion of legal size lobs differs significantly amongst sites
 ```
 
