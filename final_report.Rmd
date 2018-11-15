@@ -8,8 +8,12 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
- 
-Clean shit only!
+
+### Introduction
+
+The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). As predators, lobsters can have important impacts on prey populations; they have been shown to limit the density and sizes of mussels in rocky intertidal regions in Southern California (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001) and may indirectly impact giant kelp by releasing it from urchin grazing pressure (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014). CA spiny lobsters are highly valued as a commercially important resource across their range, generating an estimated $18.7 million in the 2014-15 fishing season in the United States alone. (CDFW 2016). 
+
+The following report analzyes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPA (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.
 
 ```{r, include = FALSE}
 # load required packages
@@ -268,8 +272,8 @@ mohk_t <- t.test(size_mohk_2012, size_mohk_2017, var.equal = TRUE) # p < 0.001
 # wrangle data to make boxplot comparing 2012 & 2017 for each site
 ##############################
 
-abund_2012_2017 <- abund %>% 
-  group_by(YEAR, SITE) %>% # group by year, then site
+abund_df <- abund %>% 
+  group_by(SITE, YEAR) %>% # group by year, then site
   filter(YEAR == "2012" | YEAR == "2017") %>% 
   mutate(protection = case_when(
     SITE == "NAPL" ~ "mpa",
@@ -287,39 +291,32 @@ abund_2012_2017 <- abund %>%
   ) %>% 
   select(YEAR, site_full, SIZE, protection)
 
-abund_2012_2017 <- abund %>% 
-  group_by(YEAR, SITE) %>% # group by year, then site
-  filter(YEAR == "2012" | YEAR == "2017") %>% 
-  mutate(site_full = case_when( 
-      SITE == "AQUE" ~ "Arroyo Quemado",
-      SITE == "CARP" ~ "Carpinteria",
-      SITE == "IVEE" ~ "Isla Vista",
-      SITE == "MOHK" ~ "Mohawk Reef",
-      SITE == "NAPL" ~ "Naples Reef"
-    )
-  ) %>% 
-  select(YEAR, site_full, SIZE)
-
-stacked_data <- melt(data = abund_2012_2017, na.rm = TRUE, value.name = "SIZE")
-# abund_stacked <- abund_2012_2017 %>% 
-#   melt(id = c("YEAR", "SITE"))
-  
 ##############################
 # boxplot of sizes in 2012 & 2017 in MPA & non-MPA sites
 ##############################
 
-sizes_1217_plot <- ggplot(abund_2012_2017, aes(x = site_full, y = SIZE, fill = YEAR)) +
-  geom_boxplot(aes(fill = YEAR))+
-  #facet_wrap(~protection) +
-  #facet_wrap(~ YEAR) +
+# sizes_1217_year_plot <- ggplot(abund_2012_2017, aes(x = YEAR, y = SIZE, fill = YEAR)) +
+#   geom_boxplot(aes(fill = YEAR))+
+#   #facet_wrap(~protection) +
+#   facet_wrap(~ site_full) +
+#   labs(x = "Site", y = "Carapace Length (mm)") +
+#   theme_classic() + 
+#   theme(axis.text = element_text(color = "black"), 
+#           panel.border = element_rect(colour = "black", fill = NA, size = 0.7), 
+#           legend.position = "none")
+# 
+# sizes_1217_year_plot # facet wrap by year
+
+sizes_1217_site_plot <- ggplot(abund_2012_2017, aes(x = YEAR, y = SIZE)) +
+  geom_boxplot(aes(group = YEAR, fill = YEAR)) +
+  facet_grid(~ site_full) +
   labs(x = "Site", y = "Carapace Length (mm)") +
-  theme_classic() + 
-  theme(axis.text = element_text(color = "black"), 
-          panel.border = element_rect(colour = "black", fill = NA, size = 0.7), 
-          legend.position = "none")
+  theme_classic() 
+  # theme(axis.text = element_text(color = "black"), 
+  #         panel.border = element_rect(colour = "black", fill = NA, size = 0.7), 
+  #         legend.position = "none")
 
-sizes_1217_plot 
-
+sizes_1217_site_plot 
 ```
 
 ```{r}
