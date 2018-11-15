@@ -104,7 +104,7 @@ abund_traps_plot
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
 
 ##############################
-# size table
+# size table for 2017
 ##############################
 abund_2017 <- abund %>% 
   filter(YEAR == "2017") %>% 
@@ -185,7 +185,7 @@ size_ph
 # PART 3. AT IVEE AND NAPL (MPAs), HOW DO LOBSTER SIZES IN 2012 AND 2017 COMPARE? AT NON-MPA SITES?
 
 ##############################
-# comparing 2012 and 2017 at IVEE and NAPL
+# subset data by site and year (2012, 2017) to compare sizes at IVEE and NAPL
 ##############################
 
 size_ivee_2012 <- abund %>%
@@ -208,8 +208,11 @@ size_napl_2017 <- abund %>%
          YEAR == "2017") %>% 
   pull(SIZE)
 
-# idk what's going on with IVEE but did it anyway
-ivee_t <- t.test(size_ivee_2012, size_ivee_2017, var.equal = TRUE)
+##############################
+# one-way t-test for IVEE & NAPL
+##############################
+
+ivee_t <- t.test(size_ivee_2012, size_ivee_2017, var.equal = TRUE) # idk what's going on with IVEE but did it anyway
 ivee_t
 # p value = 1?? lob means are not significantly different between 2012 and 2017 at IVEE
 
@@ -220,7 +223,7 @@ napl_t
 # In a report, maybe: Between 2012 and 2017, mean lobster size did not change significantly at either Isla Vista (t(df) = statistic, p = statistic, a = 0.05) or Naples Reef (t(df) = statistic, p = statistic, a = 0.05).
 
 ##############################
-# comparing 2012 and 2017 at non-MPA sites
+# subset data by site and year (2012, 2017) to compare sizes at non-MPA sites (AQUE, CARP, MOHK)
 ##############################
 
 size_aque_2012 <- abund %>%
@@ -253,12 +256,16 @@ size_mohk_2017 <- abund %>%
          YEAR == "2017") %>% 
   pull(SIZE)
 
+##############################
+# one-way t-test for non-MPA sites
+##############################
+
 aque_t <- t.test(size_aque_2012, size_aque_2017, var.equal = TRUE) # p = 1
 carp_t <- t.test(size_carp_2012, size_carp_2017, var.equal = TRUE) # p = 0.18
 mohk_t <- t.test(size_mohk_2012, size_mohk_2017, var.equal = TRUE) # p < 0.001
 
 ##############################
-# subset 2012 & 2017 data together 
+# wrangle data to make boxplot comparing 2012 & 2017 for each site
 ##############################
 
 abund_2012_2017 <- abund %>% 
@@ -284,15 +291,14 @@ abund_2012_2017 <- abund %>%
 # abund_stacked <- abund_2012_2017 %>% 
 #   melt(id = c("YEAR", "SITE"))
   
-
 ##############################
 # boxplot of sizes in 2012 & 2017 in MPA & non-MPA sites
 ##############################
 
-sizes_1217_plot <- ggplot(abund_2012_2017, aes(x = site_full, y = SIZE)) +
+sizes_1217_plot <- ggplot(abund_2012_2017, aes(x = site_full, y = SIZE, fill = YEAR)) +
   geom_boxplot()+
-  facet_wrap(~protection) +
-  facet_wrap(~ YEAR) +
+  #facet_wrap(~protection) +
+  #facet_wrap(~ YEAR) +
   labs(x = "Site", y = "Carapace Length (mm)") +
   theme_classic() + 
   theme(axis.text = element_text(color = "black"), 
