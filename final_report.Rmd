@@ -184,7 +184,7 @@ size_table_2017$full_site <- factor(size_table_2017$full_site, levels = c("Isla 
 
 size_table_2017_columns = c("Site", "Mean length", "Standard deviation", "Sample size")
 
-size_table_2017_caption = "**Table 1. Lobster carapace length in 2017.** Lobster measurements were taken at 5 SBC LTER sites in 2017. All measurements are in mm. Measurements were taken visually by estimating carapace length to the nearest ±5 mm."
+size_table_2017_caption = "**Table 1. Lobster carapace length in 2017.** Lobster measurements were taken at 5 SBC LTER sites in 2017. All measurements are in mm. Measurements were taken visually by estimating carapace length to the nearest ±5 mm. Data from Reed (2017)."
 
 kable(size_table_2017,
       col.names = size_table_2017_columns,
