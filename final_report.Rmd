@@ -22,8 +22,6 @@ Lobster surveys began in 2012 and were conducted annually as part of a long-term
 
 The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPA (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.  
 
-
-
 ```{r set up packages and data frames, include = FALSE}
 # load required packages
 library(tidyverse)
@@ -353,13 +351,23 @@ rownames(abund_2017_size) <- c("Arroyo Quemado", "Carpinteria", "Isla Vista Reef
 # x2 test
 ##############################
 
-lob_prop <- prop.table(as.matrix(abund_2017_size), 1)
+lob_prop <- round(prop.table(as.matrix(abund_2017_size), 1), 3)*100
 lob_prop
 
+lob_prop_columns = c("Above", "Below")
+
+lob_prop_caption = "**Table 2. Proportions of lobsters above and below legal limit in 2017.** The legal length of fished lobsters is 82.6mm."
+
+kable(lob_prop,
+      col.names = lob_prop_columns,
+      caption = lob_prop_caption) %>% 
+  kable_styling(bootstrap_options = "striped")
+
+# how to add column name to site? need to create new data frame?
 # going to try to figure out how to add a table that has counts with proportions
 
 lob_x2 <- chisq.test(abund_2017_size)
 lob_x2
-# proportion of legal size lobs differs significantly amongst sites
+# The proportion of legal size lobsters is significantly different amongst sites ($\chi^2$(`r lob_x2$parameter)) = `r round(lob_x2$statistic, 2`), _p_ < 0.001). 
 ```
 
