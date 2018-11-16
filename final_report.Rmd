@@ -204,7 +204,7 @@ caption2 <- paste(strwrap("Figure 2. Carapace lengths (CL, mm) of CA spiny lobst
 pdf("fig_2.pdf", width = 8, height = 6)
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   geom_boxplot(fill = "darkgrey") +
-  geom_hline(yintercept = mean(abund_2017$SIZE), linetype = 2) + # add line at CL mean across sites
+  geom_hline(yintercept = 82.6, linetype = 2) + # add line at CL mean across sites
   #geom_jitter() +
   theme_classic() +
   theme(axis.text = element_text(color = "black"), 
