@@ -93,24 +93,22 @@ traps_by_yearssite <- traps %>%
 # plot trends in lobster abundance AND fishing pressure by site thorugh time TOGETHER on same plot
 ##############################
 
-
 abund_by_yearssite$site_full <- factor(abund_by_yearssite$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
 traps_by_yearssite$site_full <- factor(traps_by_yearssite$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
 abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
-  geom_point(aes(color = site_full)) +
-  geom_line(aes(color = site_full)) +
-  geom_point(data = traps_by_yearssite, aes(color = site_full)) +
-  geom_line(data = traps_by_yearssite, linetype = "dashed", aes(color = site_full)) +
-  #scale_y_continuous(sec.axis = trans = NULL, name = "# Traps", breaks = NULL)) +
+  geom_point(color = "gray30") +
+  geom_line(color = "gray30") +
+  geom_point(data = traps_by_yearssite, color = "gray30") +
+  geom_line(data = traps_by_yearssite, linetype = "dashed", color = "gray30") +
   theme_classic() +
   theme(axis.text = element_text(color = "black"), 
-          panel.border = element_rect(colour = "black", fill=NA, size=0.7), 
-          legend.position = "none") + 
+        panel.border = element_rect(colour = "black", fill=NA, size=0.7), 
+        strip.background = element_rect(fill = "grey")) +
   facet_grid(~site_full) +
-  labs(x = "Year", y = "Counts")  +
-  scale_color_manual(values = wes_palette(n = 5, name = "Cavalcanti1"))
+  labs(x = "Year", y = "Counts") +
+  scale_x_continuous(breaks=c(2013, 2015, 2017))
 
 abund_traps_plot
 ```
