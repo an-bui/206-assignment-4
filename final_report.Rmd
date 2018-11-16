@@ -24,15 +24,15 @@ The following report analyzes lobster abundances and sizes at five SBC LTER loca
 
 ```{r set up packages and data frames, include = FALSE}
 # load required packages
+library(Rmisc)
+library(vcdExtra)
 library(tidyverse)
 library(car)
-library(vcdExtra)
 library(kableExtra)
 library(onewaytests)
 library(reshape2)
 library(lemon)
-library(ggpubr)
-library(Rmisc)
+
 
 # read in lobster_size_abundance.csv file and get into tidy format
 size_abund <- read_csv("lobster_size_abundance.csv")
@@ -67,7 +67,7 @@ abund_by_yearssite <- abund %>%
       SITE == "NAPL" ~ "Naples Reef"
     )
   ) %>% 
-  select(YEAR, site_full, count) # select and reorder columns
+  select(YEAR, SITE, site_full, count) # select and reorder columns
 
 ##############################
 #  calculate mean fishing pressure by year for each site
@@ -88,7 +88,7 @@ traps_by_yearssite <- traps %>%
       SITE == "NAPL" ~ "Naples Reef"
     )
   ) %>% 
-  select(YEAR, site_full, count) # select and reorder columns
+  select(YEAR, SITE, site_full, count) # select and reorder columns
 
 ##############################
 # plot trends in lobster abundance AND fishing pressure by site thorugh time TOGETHER on same plot
@@ -121,6 +121,23 @@ abund_traps_plot
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
 
 ##############################
+# wrangle data for 2017
+##############################
+
+abund_2017 <- abund %>% 
+  filter(YEAR == "2017",
+         SIZE != "-99999") %>% 
+  mutate(site_full = case_when( # expand to full length names
+      SITE == "AQUE" ~ "Arroyo Quemado",
+      SITE == "CARP" ~ "Carpinteria",
+      SITE == "IVEE" ~ "Isla Vista",
+      SITE == "MOHK" ~ "Mohawk Reef",
+      SITE == "NAPL" ~ "Naples Reef"
+    )
+  ) %>% 
+  select(YEAR, SITE, site_full, SIZE)
+
+##############################
 # test for variances, ANOVA, Tukey's HSD
 ##############################
 
@@ -142,18 +159,6 @@ size_ph  # so the only ones that are different are NAPL-CARP and NAPL-IVE
 ##############################
 # size table for 2017
 ##############################
-abund_2017 <- abund %>% 
-  filter(YEAR == "2017",
-         SIZE != "-99999") %>% 
-  mutate(site_full = case_when( # expand to full length names
-      SITE == "AQUE" ~ "Arroyo Quemado",
-      SITE == "CARP" ~ "Carpinteria",
-      SITE == "IVEE" ~ "Isla Vista",
-      SITE == "MOHK" ~ "Mohawk Reef",
-      SITE == "NAPL" ~ "Naples Reef"
-    )
-  ) %>% 
-  select(YEAR, SITE, site_full, SIZE)
 
 size_table_2017 <- abund_2017 %>% 
   group_by(SITE) %>% 
@@ -188,11 +193,11 @@ kable(size_table_2017,
 # box and whisker plot of size
 ##############################
 
-abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
+abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef")) # make site_full a factor to reorder on plot
 
-caption2 <- paste(strwrap("Figure 3. Carapace lengths (mm) at MPA (green) and non-MPA (yellow) sites in 2017.", width = 110), collapse = "\n")
+caption2 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Mean CL only differed significantly between Naples Reef-Carpenteria and Naples Reef-Isla Vista. All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
 
-stats <- summarySE(abund_2017, measurevar = "SIZE", groupvars = c("site_full"), na.rm = TRUE)
+#stats <- summarySE(abund_2017, measurevar = "SIZE", groupvars = c("site_full"), na.rm = TRUE) # also need to insert "stats" into ggplot argument, but isn't working correctly
 
 
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
@@ -203,14 +208,10 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   theme(axis.text = element_text(color = "black"), 
         panel.border = element_rect(colour = "black", fill=NA, size=0.8), 
         legend.position = "none",
-        plot.caption = element_text(size = 10, hjust = 0.5)) +
+        plot.caption = element_text(size = 10, hjust = 0)) +
   labs(x = "Site", y = "Carapace Length (mm)", caption = caption2) 
 
 size_2017_boxplot
-
-
-
-
 ```
 
 ```{r comparing lob sizes in 2012 and 2017}
