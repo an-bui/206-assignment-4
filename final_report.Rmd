@@ -352,8 +352,8 @@ dev.off()
 ##############################
 
 napl_d <- cohen.d(size_napl_2012, size_napl_2017, pooled = TRUE) # SMALL increase
-ivee_d <- cohen.d(size_ivee_2012, size_ivee_2017, pooled = TRUE) # NEGLIGIBLE increase
-aque_d <- cohen.d(size_aque_2012, size_aque_2017, pooled = TRUE) # NEGLIGIBLE increase
+ivee_d <- cohen.d(size_ivee_2012, size_ivee_2017, pooled = TRUE) # SMALL increase
+aque_d <- cohen.d(size_aque_2012, size_aque_2017, pooled = TRUE) # SMALL increase
 carp_d <- cohen.d(size_carp_2012, size_carp_2017, pooled = TRUE) # NEGLIGIBLE decrease
 mohk_d <- cohen.d(size_mohk_2012, size_mohk_2017, pooled = TRUE) # MEDIUM decrease
 
@@ -363,11 +363,23 @@ mohk_d <- cohen.d(size_mohk_2012, size_mohk_2017, pooled = TRUE) # MEDIUM decrea
 
 mean_ivee_2012 <- mean(size_ivee_2012)
 mean_ivee_2017 <- mean(size_ivee_2017)
+change_ivee <- mean_ivee_2017 - mean_ivee_2012 # 5.375 mm increase
 
 mean_napl_2012 <- mean(size_napl_2012)
 mean_napl_2017 <- mean(size_napl_2017)
+change_napl <- mean_napl_2017 - mean_napl_2012 # 3.232 mm increase
 
+mean_aque_2012 <- mean(size_aque_2012)
+mean_aque_2017 <- mean(size_aque_2017)
+change_aque <- mean_aque_2017 - mean_aque_2012 # 2.8955 mm increase
 
+mean_carp_2012 <- mean(size_carp_2012)
+mean_carp_2017 <- mean(size_carp_2017)
+change_carp <- mean_carp_2017 - mean_carp_2012 # 2.129 mm decrease
+
+mean_mohk_2012 <- mean(size_mohk_2012)
+mean_mohk_2017 <- mean(size_mohk_2017)
+change_mohk <- mean_mohk_2017 - mean_mohk_2012 # 5.253 mm decrease
 
 ##############################
 # boxplot of sizes in 2012 & 2017 in pooled MPA & non-MPA sites
