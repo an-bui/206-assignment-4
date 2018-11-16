@@ -33,13 +33,14 @@ The following report analyzes lobster abundances and sizes at five SBC LTER loca
 library(Rmisc)
 library(vcdExtra)
 library(tidyverse)
+library(ggsignif)
 library(effsize)
 library(car)
 library(kableExtra)
 library(onewaytests)
 library(reshape2)
 library(lemon)
-
+library(ggpubr)
 
 # read in lobster_size_abundance.csv file and get into tidy format
 size_abund <- read_csv("lobster_size_abundance.csv")
@@ -179,13 +180,17 @@ pdf("fig_2.pdf", width = 8, height = 6)
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   geom_boxplot(fill = "darkgrey") +
   geom_hline(yintercept = 82.6, linetype = 2) + # add line at CL mean across sites
-  #geom_jitter() +
-  theme_classic() +
-  theme(axis.text = element_text(color = "black"), 
-        panel.border = element_rect(colour = "black", fill=NA, size=0.8), 
-        legend.position = "none",
-        plot.caption = element_text(size = 10, hjust = 0)) +
-  labs(x = "Site", y = "Carapace Length (mm)", caption = caption2) 
+  geom_signif(comparisons = list(c("Naples", "Isla Vista"), c("Naples", "Carpinteria")),
+              inherit.aes = TRUE,
+              map_signif_level = TRUE,
+              test = "anova") 
+  # theme_classic() +
+  # theme(axis.text = element_text(color = "black"), 
+  #       panel.border = element_rect(colour = "black", fill=NA, size=0.8), 
+  #       legend.position = "none",
+  #       plot.caption = element_text(size = 10, hjust = 0)) +
+  # labs(x = "Site", y = "Carapace Length (mm)", caption = caption2) 
+
 size_2017_boxplot
 dev.off()
 ```
