@@ -11,17 +11,23 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Introduction
+#### Introduction
 
-FROM METHODS--REARRANGE AND EXPAND
-The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). As predators, lobsters can have important impacts on prey populations; they have been shown to limit the density and sizes of mussels in rocky intertidal regions in Southern California (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001) and may indirectly impact giant kelp by releasing it from urchin grazing pressure (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014). 
+The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). As predators, lobsters can have important impacts on prey populations; they have been shown to limit the density and sizes of mussels in rocky intertidal regions in Southern California (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001) and may indirectly impact giant kelp by releasing it from urchin grazing pressure (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014).  
 
+- importance of size/what means for reproduction  
+
+- expand fisheries portion
 CA spiny lobsters are highly valued as a commercially important resource across their range, generating an estimated $18.7 million in the 2014-15 fishing season in the United States alone. (CDFW 2016). 
 
+#### Methods
+- add a map
+- MPA info
 Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (figure 1, throw in a map?). Two of these sites (Isla Vista, Naples Reef) are in Marine Protected Areas (MPA), while three (Arroyo Quemado, Carpinteria, Mohawk) are not. Comparing MPA and non-MPA sites allows us to elucidate the effects of fishing on lobster abundance. When integrating these surveys with algal and invertebrate surveys also being conducted at these sites, we are able to construct a holistic profile of kelp forest community dynamics in response to fishing pressure.
 
 The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPA (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.  
 
+#### Results and Discussion
 ```{r set up packages and data frames, include = FALSE}
 # load required packages
 library(Rmisc)
@@ -48,7 +54,7 @@ traps <- as.data.frame(traps_master) %>%
   expand.dft(freq = "TRAPS")
 ```
 
-
+### Lobster abundance and fishing pressure between 2012 and 2017
 ```{r trends in lob abundance and fishing pressure}
 # PART 1. DESCRIBE TRENDS IN LOBSTER ABUNDANCE AND FISHING PRESSURE AT THE 5 LOCATIONS FROM 2012-2017
 
@@ -119,6 +125,7 @@ abund_traps_plot
 #dev.off()
 ```
 
+### Lobster size in 2017 inside and outside MPAs
 ```{r compare mean lob size in 2017}
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
 
@@ -157,39 +164,6 @@ summary(size_anova)
 
 size_ph <- TukeyHSD(size_anova)
 size_ph  # so the only ones that are different are NAPL-CARP and NAPL-IVE
-
-##############################
-# size table for 2017
-##############################
-
-size_table_2017 <- abund_2017 %>% 
-  group_by(SITE) %>% 
-  summarize(
-    mean = round(mean(SIZE), 1),
-    sd = round(sd(SIZE), 1),
-    n = length(SIZE)
-    ) %>% 
-  mutate(
-    full_site = case_when(
-      SITE == "AQUE" ~ "Arroyo Quemado",
-      SITE == "IVEE" ~ "Isla Vista", 
-      SITE == "MOHK" ~ "Mohawk",
-      SITE == "CARP" ~ "Carpinteria",
-      SITE == "NAPL" ~ "Naples Reef"
-    )
-  ) %>% 
-  select(full_site, mean, sd, n)
-
-size_table_2017$full_site <- factor(size_table_2017$full_site, levels = c("Isla Vista", "Naples Reef", "Arroyo Quemado", "Mohawk", "Carpinteria"))
-
-size_table_2017_columns = c("Site", "Mean length", "Standard deviation", "Sample size")
-
-size_table_2017_caption = "**Table 1. Lobster carapace length in 2017.** Lobster measurements were taken at 5 SBC LTER sites in 2017. All measurements are in mm. Measurements were taken visually by estimating carapace length to the nearest ±5 mm. Data from Reed (2017)."
-
-kable(size_table_2017,
-      col.names = size_table_2017_columns,
-      caption = size_table_2017_caption) %>% 
-  kable_styling(bootstrap_options = "striped")
 
 ##############################
 # box and whisker plot of size
@@ -380,65 +354,6 @@ change_carp <- mean_carp_2017 - mean_carp_2012 # 2.129 mm decrease
 mean_mohk_2012 <- mean(size_mohk_2012)
 mean_mohk_2017 <- mean(size_mohk_2017)
 change_mohk <- mean_mohk_2017 - mean_mohk_2012 # 5.253 mm decrease
-
-##############################
-# boxplot of sizes in 2012 & 2017 in pooled MPA & non-MPA sites
-##############################
-
-# captionx <- paste(strwrap("Figure 4. blah.", width = 110), collapse = "\n") # fix alpha; bold;
-# 
-# abund_pooled_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
-#   geom_boxplot(aes(group = YEAR, fill = factor(YEAR))) +
-#   scale_fill_manual(breaks = c("2012", "2017"),values = c("white", "darkgrey"), name = "Year") +
-#   facet_grid(~ protection) +
-#   labs(x = "Site", y = "Carapace Length (mm)", caption = captionx) +
-#   theme_classic() +
-#    theme(
-#     axis.title.x=element_blank(),
-#     axis.text.x=element_blank(),
-#     axis.ticks.x=element_blank(),
-#     #legend.position="none",
-#     panel.border = element_rect(colour = "black", fill=NA, size=0.7),
-#     strip.background = element_rect(fill = "grey"),
-#     plot.caption = element_text(size = 10, hjust = 0)) 
-
-##############################
-# subset pooled mpa & non-mpa for both 2012 and 2017
-##############################
-
-# size_mpa_2012 <- abund_df %>% 
-#   filter(protection == "MPA",
-#          YEAR == "2012") %>% 
-#   pull(SIZE)
-# 
-# size_mpa_2017 <- abund_df %>% 
-#   filter(protection == "MPA",
-#          YEAR == "2017") %>% 
-#   pull(SIZE)
-# 
-# size_nonmpa_2012 <- abund_df %>% 
-#   filter(protection == "Non-MPA",
-#          YEAR == "2012") %>% 
-#   pull(SIZE)
-# 
-# size_nonmpa_2017 <- abund_df %>% 
-#   filter(protection == "Non-MPA",
-#          YEAR == "2017") %>% 
-#   pull(SIZE)
-
-##############################
-# t-tests between 2012 & 2017 for pooled mpa and non-mpa
-##############################
-
-# mpa_t <- t.test(size_mpa_2012, size_mpa_2017) # p = 0.03
-# nonmpa_t <- t.test(size_nonmpa_2012, size_nonmpa_2017) # p < 0.01 hmmmm
-
-##############################
-# Cohen's d effect size -- change in CL from 2012-2017 at pooled mpa & non-mpa
-##############################
-
-# mpa_d <- cohen.d(size_mpa_2012, size_mpa_2017) # small
-# nonmpa_d <- cohen.d(size_nonmpa_2012, size_mpa_2017) # negligible
 ```
 
 ```{r proportion of lobs above legal min}
@@ -450,8 +365,8 @@ change_mohk <- mean_mohk_2017 - mean_mohk_2012 # 5.253 mm decrease
 
 abund_2017_size <- abund_2017 %>% 
   mutate(legal = case_when(
-    SIZE > 82.6 ~ "below",
-    SIZE < 82.6 ~ "above"
+    SIZE > 82.6 ~ "above",
+    SIZE < 82.6 ~ "below"
   )) %>% 
   count(SITE, legal) %>% 
   spread(legal, n) %>% 
