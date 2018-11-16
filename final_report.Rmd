@@ -154,7 +154,8 @@ size_table_2017_columns = c("Site", "Mean length", "Standard deviation", "Sample
 size_table_2017_caption = "**Table 1. Lobster carapace length in 2017.** Lobster measurements were taken at 5 SBC LTER sites in 2017. All measurements are in mm. Measurements were taken visually by estimating carapace length to the nearest ±5 mm."
 
 kable(size_table_2017,
-      col.names = size_table_2017_columns) %>% 
+      col.names = size_table_2017_columns,
+      caption = size_table_2017_caption) %>% 
   kable_styling(bootstrap_options = "striped")
 
 ##############################
@@ -230,7 +231,7 @@ ivee_t # p value = 1?? lob means are not significantly different between 2012 an
 napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
 napl_t # p value = 0.5373, lob means are not significantly different between 2012 and 2017 at NAPL
 
-# In a report, maybe: Between 2012 and 2017, mean lobster size did not change significantly at either Isla Vista (t(df) = statistic, p = statistic, a = 0.05) or Naples Reef (t(df) = statistic, p = statistic, a = 0.05).
+# Mean lobster size does not differ signficantly between 2012 and 2017 at either Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, _p_ = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, _p_ = `r round(napl_t$p.value, 2)`).
 
 ##############################
 # subset data by site and year (2012, 2017) to compare sizes at non-MPA sites (AQUE, CARP, MOHK)
@@ -274,6 +275,8 @@ aque_t <- t.test(size_aque_2012, size_aque_2017, var.equal = TRUE) # p = 1
 carp_t <- t.test(size_carp_2012, size_carp_2017, var.equal = TRUE) # p = 0.18
 mohk_t <- t.test(size_mohk_2012, size_mohk_2017, var.equal = TRUE) # p < 0.001
 
+# Similarly to MPA sites, non-MPA sites show a similar consistency in lobster carapace length when comparing measurements from 2012 and 2017. Carapace length does not differ significantly between 2012 and 2017 at Arroyo Quemado (t(`r round(aque_t$parameter, 2)`) = `r round(aque_t$statistic, 2)`, _p_ = `r round(aque_t$p.value, 2)`) or Carpinteria (t(`r round(carp_t$parameter, 2)`) = `r round(carp_t$statistic, 2)`, _p_ = `r round(carp_t$p.value, 2)`). However, lobster carapace length does differ significantly between comparison years at Mohawk (t(`r round(mohk_t$parameter, 2)`) = `r round(mohk_t$statistic, 2)`, _p_ = `r round(mohk_t$p.value, 2)`). 
+
 ##############################
 # wrangle data to make boxplot comparing 2012 & 2017 for each site
 ##############################
@@ -293,8 +296,7 @@ abund_df <- abund %>%
       SITE == "IVEE" ~ "Isla Vista",
       SITE == "MOHK" ~ "Mohawk Reef",
       SITE == "NAPL" ~ "Naples Reef"
-    )
-  ) %>% 
+    )) %>% 
   select(YEAR, site_full, SIZE, protection)
 
 ##############################
@@ -341,7 +343,7 @@ abund_2017_size <- abund_2017 %>%
   spread(legal, n) %>% 
   select(-SITE)
 
-rownames(abund_2017_size) <- c("Arroyo Quemado", "Carpinteria", "Isla Vista Reef", "Mohawk", "Naples Reef"
+rownames(abund_2017_size) <- c("Arroyo Quemado", "Carpinteria", "Isla Vista Reef", "Mohawk", "Naples Reef")
   
 ##############################
 # x2 test
@@ -349,6 +351,8 @@ rownames(abund_2017_size) <- c("Arroyo Quemado", "Carpinteria", "Isla Vista Reef
 
 lob_prop <- prop.table(as.matrix(abund_2017_size), 1)
 lob_prop
+
+# going to try to figure out how to add a table that has counts with proportions
 
 lob_x2 <- chisq.test(abund_2017_size)
 lob_x2
