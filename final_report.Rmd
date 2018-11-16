@@ -97,6 +97,8 @@ abund_by_yearssite$site_full <- factor(abund_by_yearssite$site_full, levels=c("I
 
 traps_by_yearssite$site_full <- factor(traps_by_yearssite$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
+caption <- paste(strwrap("Figure 1. Lobster counts (solid lines) vs. lobster trap counts (dashed lines) at MPAs (green) and non-MPAs (yellow) from 2012-2017.", width = 110), collapse = "\n")
+
 abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
   geom_point(color = "gray30") +
   geom_line(color = "gray30") +
@@ -105,9 +107,10 @@ abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
   theme_classic() +
   theme(axis.text = element_text(color = "black"), 
         panel.border = element_rect(colour = "black", fill=NA, size=0.7), 
-        strip.background = element_rect(fill = "grey")) +
+        strip.background = element_rect(fill = "grey"),
+        plot.caption = element_text(size = 10, hjust = 0.5,)) +
   facet_grid(~site_full) +
-  labs(x = "Year", y = "Counts") +
+  labs(x = "Year", y = "Counts", caption = caption) +
   scale_x_continuous(breaks=c(2013, 2015, 2017))
 
 abund_traps_plot
@@ -165,15 +168,19 @@ kable(size_table_2017,
 # box and whisker plot of size
 ##############################
 
+abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
+
+caption2 <- paste(strwrap("Figure 3. Carapace lengths (mm) at MPA (green) and non-MPA (yellow) sites in 2017.", width = 110), collapse = "\n")
+
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
-  geom_boxplot(aes(fill = site_full)) +
+  geom_boxplot(fill = "darkgrey") +
   #geom_jitter() +
   theme_classic() +
   theme(axis.text = element_text(color = "black"), 
-          panel.border = element_rect(colour = "black", fill=NA, size=0.8), 
-          legend.position = "none") +
-  labs(x = "Site", y = "Carapace Length (mm)") +
-  scale_fill_manual(values = wes_palette(n = 5, name = "Cavalcanti1"))
+        panel.border = element_rect(colour = "black", fill=NA, size=0.8), 
+        legend.position = "none",
+        plot.caption = element_text(size = 10, hjust = 0.5,)) +
+  labs(x = "Site", y = "Carapace Length (mm)", caption = caption2) 
 
 size_2017_boxplot
 
@@ -308,12 +315,14 @@ abund_df <- abund %>%
 
 abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
+caption3 <- paste(strwrap("Figure 3. Carapace lengths (mm) surveyed at MPA (green) and non-MPA (yellow) sites in 2012 and 2017.", width = 110), collapse = "\n")
+
 #pdf("fig_3.pdf", width = 8, height = 6)
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
   geom_boxplot(aes(group = YEAR, fill = factor(YEAR))) +
   scale_fill_manual(breaks = c("2012", "2017"),values = c("white", "darkgrey"), name = "Year") +
   facet_grid(~ site_full) +
-  labs(x = "Site", y = "Carapace Length (mm)") +
+  labs(x = "Site", y = "Carapace Length (mm)", caption = caption3) +
   theme_classic() +
    theme(
     axis.title.x=element_blank(),
@@ -321,8 +330,8 @@ abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
     axis.ticks.x=element_blank(),
     #legend.position="none",
     panel.border = element_rect(colour = "black", fill=NA, size=0.7),
-    strip.background = element_rect(fill = "grey")
-  ) 
+    strip.background = element_rect(fill = "grey"),
+    plot.caption = element_text(size = 10, hjust = 0.5,)) 
 abund_plot
 #dev.off()
   
