@@ -100,6 +100,7 @@ traps_by_yearssite$site_full <- factor(traps_by_yearssite$site_full, levels=c("I
 
 caption1 <- paste(strwrap("Figure 1. Lobster abundance and fishing pressure at five locations in the Santa Barbara Channel (2017). Lobster abundance (solid lines) estimated annually in late summer via SCUBA on replicate permanent SBC LTER transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. Fishing pressure estimated by counting the number of lobster trap floats (dashed lines) in definded ares of coastline every 2 - 4 weeks during the fishing season. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Data from Reed (2017).", width = 110), collapse = "\n")
 
+#pdf("fig_1.pdf", width = 8, height = 6)
 abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
   geom_point(color = "gray30") +
   geom_line(color = "gray30") +
@@ -113,8 +114,8 @@ abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
   facet_grid(~site_full) +
   labs(x = "Year", y = "Counts", caption = caption1) +
   scale_x_continuous(breaks=c(2013, 2015, 2017))
-
 abund_traps_plot
+#dev.off()
 ```
 
 ```{r compare mean lob size in 2017}
@@ -195,10 +196,11 @@ kable(size_table_2017,
 
 abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef")) # make site_full a factor to reorder on plot
 
-caption2 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Mean CL only differed significantly between Naples Reef-Carpenteria and Naples Reef-Isla Vista. All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
+caption2 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Dashed line represents the mean CL across all five sites in 2017. Mean CL only differed significantly between Naples Reef-Carpenteria and Naples Reef-Isla Vista. All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
 
 #stats <- summarySE(abund_2017, measurevar = "SIZE", groupvars = c("site_full"), na.rm = TRUE) # also need to insert "stats" into ggplot argument, but isn't working correctly
 
+pdf("fig_2.pdf", width = 8, height = 6)
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   geom_boxplot(fill = "darkgrey") +
   geom_hline(yintercept = mean(abund_2017$SIZE), linetype = 2) + # add line at CL mean across sites
@@ -209,8 +211,8 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
         legend.position = "none",
         plot.caption = element_text(size = 10, hjust = 0)) +
   labs(x = "Site", y = "Carapace Length (mm)", caption = caption2) 
-
 size_2017_boxplot
+dev.off()
 ```
 
 ```{r comparing lob sizes in 2012 and 2017}
@@ -326,7 +328,7 @@ abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples 
 
 caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. One-way t-tests of CL by site yielded no signficant differences between 2012 & 2017 (one-way test, alpha = 0.05) Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
 
-#pdf("fig_3.pdf", width = 8, height = 6)
+pdf("fig_3.pdf", width = 8, height = 6)
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
   geom_boxplot(aes(group = YEAR, fill = factor(YEAR))) +
   scale_fill_manual(breaks = c("2012", "2017"),values = c("white", "darkgrey"), name = "Year") +
@@ -342,7 +344,7 @@ abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
     strip.background = element_rect(fill = "grey"),
     plot.caption = element_text(size = 10, hjust = 0)) 
 abund_plot
-#dev.off()
+dev.off()
 ```
 
 ```{r proportion of lobs above legal min}
