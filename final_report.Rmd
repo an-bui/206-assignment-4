@@ -98,7 +98,7 @@ abund_by_yearssite$site_full <- factor(abund_by_yearssite$site_full, levels=c("I
 
 traps_by_yearssite$site_full <- factor(traps_by_yearssite$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption <- paste(strwrap("Figure 1. Lobster counts (solid lines) vs. lobster trap counts (dashed lines) at MPAs (green) and non-MPAs (yellow) from 2012-2017.", width = 110), collapse = "\n")
+caption1 <- paste(strwrap("Figure 1. Lobster abundance and fishing pressure at five locations in the Santa Barbara Channel (2017). Lobster abundance (solid lines) estimated annually in late summer via SCUBA on replicate permanent SBC LTER transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. Fishing pressure estimated by counting the number of lobster trap floats (dashed lines) in definded ares of coastline every 2 - 4 weeks during the fishing season. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Data from Reed (2017).", width = 110), collapse = "\n")
 
 abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
   geom_point(color = "gray30") +
@@ -109,9 +109,9 @@ abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
   theme(axis.text = element_text(color = "black"), 
         panel.border = element_rect(colour = "black", fill=NA, size=0.7), 
         strip.background = element_rect(fill = "grey"),
-        plot.caption = element_text(size = 10, hjust = 0.5,)) +
+        plot.caption = element_text(size = 10, hjust = 0)) +
   facet_grid(~site_full) +
-  labs(x = "Year", y = "Counts", caption = caption) +
+  labs(x = "Year", y = "Counts", caption = caption1) +
   scale_x_continuous(breaks=c(2013, 2015, 2017))
 
 abund_traps_plot
@@ -198,7 +198,6 @@ abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Nap
 caption2 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Mean CL only differed significantly between Naples Reef-Carpenteria and Naples Reef-Isla Vista. All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
 
 #stats <- summarySE(abund_2017, measurevar = "SIZE", groupvars = c("site_full"), na.rm = TRUE) # also need to insert "stats" into ggplot argument, but isn't working correctly
-
 
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   geom_boxplot(fill = "darkgrey") +
@@ -317,7 +316,7 @@ abund_df <- abund %>%
       SITE == "MOHK" ~ "Mohawk Reef",
       SITE == "NAPL" ~ "Naples Reef"
     )) %>% 
-  select(YEAR, site_full, SIZE, protection)
+  select(YEAR, SITE, site_full, SIZE, protection)
 
 ##############################
 # boxplot of sizes in 2012 & 2017 in MPA & non-MPA sites
@@ -325,7 +324,7 @@ abund_df <- abund %>%
 
 abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption3 <- paste(strwrap("Figure 3. Carapace lengths (mm) surveyed at MPA (green) and non-MPA (yellow) sites in 2012 and 2017.", width = 110), collapse = "\n")
+caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. One-way t-tests of CL by site yielded no signficant differences between 2012 & 2017 (one-way test, alpha = 0.05) Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
 
 #pdf("fig_3.pdf", width = 8, height = 6)
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
@@ -341,15 +340,9 @@ abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
     #legend.position="none",
     panel.border = element_rect(colour = "black", fill=NA, size=0.7),
     strip.background = element_rect(fill = "grey"),
-    plot.caption = element_text(size = 10, hjust = 0.5,)) 
+    plot.caption = element_text(size = 10, hjust = 0)) 
 abund_plot
 #dev.off()
-  
-  
-# grid.brackets(220, bottom_y,80, bottom_y, lwd=2, col="red")
-# 
-# grid.locator("native")
-# bottom_y = 154.125
 ```
 
 ```{r proportion of lobs above legal min}
