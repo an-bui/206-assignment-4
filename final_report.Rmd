@@ -18,7 +18,11 @@ The California spiny lobster, *Panulirus interruptus*, ranges from Monterey 
 
 CA spiny lobsters are highly valued as a commercially important resource across their range, generating an estimated $18.7 million in the 2014-15 fishing season in the United States alone. (CDFW 2016). 
 
-The following report analzyes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPA (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.
+Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (figure 1, throw in a map?). Two of these sites (Isla Vista, Naples Reef) are in Marine Protected Areas (MPA), while three (Arroyo Quemado, Carpinteria, Mohawk) are not. Comparing MPA and non-MPA sites allows us to elucidate the effects of fishing on lobster abundance. When integrating these surveys with algal and invertebrate surveys also being conducted at these sites, we are able to construct a holistic profile of kelp forest community dynamics in response to fishing pressure.
+
+The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPA (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.  
+
+
 
 ```{r set up packages and data frames, include = FALSE}
 # load required packages
