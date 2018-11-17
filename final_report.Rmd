@@ -2,9 +2,11 @@
 title: "Final report"
 author: "An Bui, Sam Csik"
 date: "11/14/2018"
-output: html_document
-editor_options: 
+output:
+  word_document: default
+editor_options:
   chunk_output_type: console
+always_allow_html: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -43,6 +45,7 @@ library(onewaytests)
 library(reshape2)
 library(lemon)
 library(ggpubr)
+library(ggThemeAssist)
 
 # read in lobster_size_abundance.csv file and get into tidy format
 size_abund <- read_csv("lobster_size_abundance.csv")
