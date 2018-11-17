@@ -25,7 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 - expand fisheries portion
 CA spiny lobsters are highly valued as a commercially important resource across their range, generating an estimated $18.7 million in the 2014-15 fishing season in the United States alone. (CDFW 2016). 
 
-#### Methods
+#### Methods and objectives
 ##### Marine Protected Areas in the SBC LTER
   California's Marine Life Protection Act was passed in 1999 to designate a network of marine protected areas with the input of scientists and citizen stakeholders. An express purpose of the act was to practice "adaptive management", or management of ecosystems and their communities by integrating current science to continually change management strategies to best fit the needs of the system as well as the stakeholders (cite MLPA).  
   In the five focal sites within the Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites, two of these are MPAs (Isla Vista, Naples Reef), while three (Arroyo Quemado, Carpinteria, Mohawk) are not. Isla Vista and Naples Reef were designated MPAs in 2012. This design is a natural experiment to understand the efficacy of fishing pressure on the population dynamics of integral species to the kelp forest, such as the CA spiny lobster. When integrating lobster surveys with algal and invertebrate surveys also being conducted at these sites, we are able to construct a holistic profile of kelp forest community dynamics in response to fishing pressure. Additionally, since surveys began in the same year that Isla Vista and Naples Reef were designated MPAs, we are able to assess the length of time before seeing changes in population dynamics in response to eliminating fishing pressure.
@@ -34,7 +34,12 @@ CA spiny lobsters are highly valued as a commercially important resource across 
   Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded by divers on SCUBA on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (fig. 1).  
   Fishing pressure is quantified by counting floating trap buoys at eight SBC LTER sites every two weeks during the legal lobster fishing season from October to March. Trap buoys are attached to wire lobster traps set no deeper than 15m below the ocean surface.
 
-The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPAs (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.  
+##### Objectives
+The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPAs (Arroyo Quemado, Carpenteria, Mohawk). We use monitoring data at these five sites to ask:
+    1. how lobster abundance, size, and fishing pressure has changed over time between the start of surveys in 2012 and the most recent surveys in 2017,  
+    2. what proportion of lobsters are over the legal size minimum of 82.6mm for the commercial fishery in 2017, and  
+    3. how lobster mean size compares across all five sites in 2017.  
+We find that _____________. 
 
 #### Results and Discussion
 ```{r set up packages and data frames, include = FALSE}
@@ -65,8 +70,9 @@ traps <- as.data.frame(traps_master) %>%
   expand.dft(freq = "TRAPS")
 ```
 
-### Lobster abundance and fishing pressure between 2012 and 2017
-```{r trends in lob abundance and fishing pressure}
+##### Lobster abundance and fishing pressure between 2012 and 2017
+
+```{r trends in lob abundance and fishing pressure, echo = FALSE}
 # PART 1. DESCRIBE TRENDS IN LOBSTER ABUNDANCE AND FISHING PRESSURE AT THE 5 LOCATIONS FROM 2012-2017
 
 #############################
@@ -136,7 +142,7 @@ abund_traps_plot
 #dev.off()
 ```
 
-### Lobster size in 2017 inside and outside MPAs
+##### Lobster size in 2017 inside and outside MPAs
 ```{r compare mean lob size in 2017}
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
 
@@ -203,6 +209,7 @@ size_2017_boxplot
 dev.off()
 ```
 
+##### Lobster size change over time at MPA sites
 ```{r comparing lob sizes in 2012 and 2017}
 # PART 3. AT IVEE AND NAPL (MPAs), HOW DO LOBSTER SIZES IN 2012 AND 2017 COMPARE? AT NON-MPA SITES?
 
@@ -239,9 +246,11 @@ ivee_t # p value = 0.0599, lob means are not sig different between 2012 & 2017 a
 
 napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
 napl_t # p value = 0.5002, lob means are not significantly different between 2012 and 2017 at NAPL
+```
 
-# Mean lobster size does not differ signficantly between 2012 and 2017 at either Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, _p_ = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, _p_ = `r round(napl_t$p.value, 2)`).
-
+  Between 2012 and 2017, mean lobster size does not differ signficantly at either Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, _p_ = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, _p_ = `r round(napl_t$p.value, 2)`). 
+  
+```{r lob sizes at non-MPA sites}
 ##############################
 # subset data by site and year (2012, 2017) to compare sizes at non-MPA sites (AQUE, CARP, MOHK)
 ##############################
