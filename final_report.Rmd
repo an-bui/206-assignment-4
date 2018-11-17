@@ -180,17 +180,14 @@ pdf("fig_2.pdf", width = 8, height = 6)
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   geom_boxplot(fill = "darkgrey") +
   geom_hline(yintercept = 82.6, linetype = 2) + # add line at CL mean across sites
-  geom_signif(comparisons = list(c("Naples", "Isla Vista"), c("Naples", "Carpinteria")),
-              inherit.aes = TRUE,
-              map_signif_level = TRUE,
-              test = "anova") 
-  # theme_classic() +
-  # theme(axis.text = element_text(color = "black"), 
-  #       panel.border = element_rect(colour = "black", fill=NA, size=0.8), 
-  #       legend.position = "none",
-  #       plot.caption = element_text(size = 10, hjust = 0)) +
-  # labs(x = "Site", y = "Carapace Length (mm)", caption = caption2) 
-
+  geom_signif(comparisons = list(c("Naples Reef", "Isla Vista"), c("Naples Reef", "Carpinteria")),
+              map_signif_level = TRUE) +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black"),
+        panel.border = element_rect(colour = "black", fill=NA, size=0.8),
+        legend.position = "none",
+        plot.caption = element_text(size = 10, hjust = 0)) +
+  labs(x = "Site", y = "Carapace Length (mm)", caption = caption2)
 size_2017_boxplot
 dev.off()
 ```
