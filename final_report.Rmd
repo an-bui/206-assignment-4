@@ -68,7 +68,7 @@ traps <- as.data.frame(traps_master) %>%
 ```
 
 ##### Lobster abundance and fishing pressure between 2012 and 2017
-```{r trends in lob abundance and fishing pressure, echo = FALSE}
+```{r trends in lob abundance and fishing pressure, include = FALSE}
 # PART 1. DESCRIBE TRENDS IN LOBSTER ABUNDANCE AND FISHING PRESSURE AT THE 5 LOCATIONS FROM 2012-2017
 
 #############################
@@ -150,7 +150,7 @@ abund_traps_plot
  
 
 ##### Lobster size in 2017 inside and outside MPAs
-```{r compare mean lob size in 2017}
+```{r compare mean lob size in 2017 for all, include = FALSE}
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
 
 ##############################
@@ -217,7 +217,7 @@ dev.off()
 
 
 ##### Lobster size change over time at MPA sites
-```{r compare mean lob size between 2012 and 2017 for MPAs}
+```{r compare mean lob size between 2012 and 2017 for MPAs, include = FALSE}
 # PART 3. AT IVEE AND NAPL (MPAs), HOW DO LOBSTER SIZES IN 2012 AND 2017 COMPARE? AT NON-MPA SITES?
 
 ##############################
@@ -265,7 +265,7 @@ napl_t # p value = 0.5002, lob means are not significantly different between 201
    large lobster produce more eggs--but there is evidence that most recruits actually come from baja so i'm not actually sure i'd hang my hat on this one...
    
  fig 1 increase in fishing pressur at aq and carp after 2012 may be due to est of mpas (shift of pressure elsewhere)
-```{r lob sizes at non-MPA sites}
+```{r lob sizes at non-MPA sites, include = FALSE}
 ##############################
 # subset data by site and year (2012, 2017) to compare sizes at non-MPA sites (AQUE, CARP, MOHK)
 ##############################
@@ -391,7 +391,7 @@ change_mohk <- mean_mohk_2017 - mean_mohk_2012 # 5.253 mm decrease
 ```
 
 ##### Lobster size in 2017 inside and outside MPAs
-```{r compare mean lob size in 2017}
+```{r compare mean lob size in 2017, include = FALSE}
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
 
 ##############################
@@ -456,7 +456,7 @@ size_2017_boxplot
 #dev.off()
 ```
 
-```{r proportion of lobs above legal min}
+```{r proportion of lobs above legal min, include = FALSE}
 # PART 4. WHAT PROPORTION OF OBSERVED LOBSTERS AT EACH SITE ARE ABOVE THE LEGAL MINIMUM (82.6mm)
 
 ##############################
