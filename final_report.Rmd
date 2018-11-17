@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #### Introduction
 
   The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, (though few individuals are found north of Point Conception) to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). Within southern California nearshore ecosystems, lobsters can have important impacts as keystone predators. They have been shown to increase biodiversity within rocky intertidal regions in Southern California by limiting the density and sizes of mussels (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001) and may indirectly facilitate the resistance of giant kelp forests from phase shifts to urchin barrens by consuming red and purple urchins (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014).  
+  adf
   
   Beyond thier ecological importance, CA spiny lobster support a valuable commercial and recreational fishery
 
