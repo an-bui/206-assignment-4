@@ -28,14 +28,14 @@ knitr::opts_chunk$set(echo = TRUE)
   Of the five focal sites within the Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites, two are MPAs (Isla Vista, Naples Reef), and three (Arroyo Quemado, Carpinteria, Mohawk) are unprotected and open to both commercial and recreational fishing. Isla Vista and Naples Reef were designated MPAs in 2012. This design is a natural experiment to understand the effects of fishing pressure on the population dynamics of integral species to the kelp forest, such as the CA spiny lobster. When integrating lobster surveys with algal and invertebrate surveys also being conducted at these sites, the SBC LTER is able to better construct a holistic profile of kelp forest community dynamics in response to fishing pressure.
 
 ##### Long term surveys
-  Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded by divers on SCUBA on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (Fig. 1).  
+  Lobster surveys began in 2012 and were conducted annually in late summer as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded by divers on SCUBA on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (Fig. 1).  
   Fishing pressure is quantified by counting floating trap buoys at eight SBC LTER sites every two weeks during the legal lobster fishing season from October to March. Trap buoys are attached to wire lobster traps set no deeper than 15m below the ocean surface.
 
 ##### Objectives
 The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPAs (Arroyo Quemado, Carpenteria, Mohawk). We use monitoring data at these five sites to ask:
     1. how lobster abundance, size, and fishing pressure has changed over time between the start of surveys in 2012 and the most recent surveys in 2017,  
-    2. what proportion of lobsters are over the legal size minimum of 82.6mm for the commercial fishery in 2017, and  
-    3. how lobster mean size compares across all five sites in 2017.  
+    2. how lobster mean size compares across all five sites in 2017, and  
+    3. what proportion of lobsters are over the legal size minimum of 82.6mm for the commercial fishery in 2017.
 We find that _____________. 
 
 #### Results and Discussion
@@ -71,7 +71,6 @@ traps <- as.data.frame(traps_master) %>%
 ```
 
 ##### Lobster abundance and fishing pressure between 2012 and 2017
-
 ```{r trends in lob abundance and fishing pressure, echo = FALSE}
 # PART 1. DESCRIBE TRENDS IN LOBSTER ABUNDANCE AND FISHING PRESSURE AT THE 5 LOCATIONS FROM 2012-2017
 
@@ -141,6 +140,7 @@ abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
 abund_traps_plot
 #dev.off()
 ```
+<<<<<<< HEAD
 
 ##### Lobster size in 2017 inside and outside MPAs
 ```{r compare mean lob size in 2017}
@@ -207,9 +207,14 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
 size_2017_boxplot
 #dev.off()
 ```
+=======
+ Lobster abundance has generally increased between 2012 and 2017, though raw increases in abundance differ between sites. Comparing MPA sites, Isla Vista saw a net increase of 580 lobsters within the transect area, while Naples Reef had a net increase of 106 lobsters. In non-MPA sites, Arroyo Quemado saw a net increase of 29 lobsters, Mohawk Reef populations increased by 95 lobsters, and the largest increase was at Carpinteria with 627 lobsters. The differences in increasing abundance at the MPA sites indicates that there may be environmental factors that contribute to the reproductive success of one population over the other; for example, Isla Vista may ... [idk about this, could just be making shit up so feel free to take out]
+ As expected at non-MPA sites, when fishing pressure decreases, lobster abundance increases. At all three non-MPA sites, decreases in fishing pressure are generally followed by increases in lobster abundance. Fishing pressure has fluctuated greatly at all three sites but shows a net decrease between 2012 and 2017. While the effects on the lobster abundance can be slight (e.g. Arroyo Quemado) or large (Carpinteria), lobster populations are responding to fluctuations in fishing pressure. [again, making this up. idk if right]
+ - your points about Mohawk here
+>>>>>>> adb9c6d07972ba42ec1b502184a2cf161f2dd6ef
 
 ##### Lobster size change over time at MPA sites
-```{r comparing lob sizes in 2012 and 2017}
+```{r compare mean lob size between 2012 and 2017 for MPAs}
 # PART 3. AT IVEE AND NAPL (MPAs), HOW DO LOBSTER SIZES IN 2012 AND 2017 COMPARE? AT NON-MPA SITES?
 
 ##############################
@@ -247,6 +252,7 @@ napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
 napl_t # p value = 0.5002, lob means are not significantly different between 2012 and 2017 at NAPL
 ```
 
+<<<<<<< HEAD
   To evaluate the effects of fishing pressure on lobster populations, we compared lobster size (CL) at MPA and non-MPA sites between the time of MPA establishment (2012) and the most recent survey assessment (2017). Between years, mean lobster size did not differ signficantly at either of the two MPA sites: Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, p = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, p = `r round(napl_t$p.value, 2)`). Despite non-significant changes, however, mean lobster CL did increase `change_ivee` mm and `change_napl` mm between 2012 and 2017 at Isla Vista (Cohen's *d* = `r round(ivee_d$estimate, 2)` and Naples Reef (Cohen's *d* = `r round(napl_d$estimate, 2)`, respectively (Fig.4). Conversely, two out of three non-MPA sites saw a decrease in mean lobster CL between years. Carpenteria, though non-significant (t(`r round(carp_t$parameter, 2)`) = `r round(carp_t$statistic, 2)`, p = `r round(carp_t$p.value, 2)`) had a decrease of `change_carp` mm (Cohen's *d* = `r round(carp_d$estimate, 2)`). The most striking difference in lobster size was observed at Mohawk Reef, which saw a significant decline in mean CL (t(`r round(mohk_t$parameter, 2)`) = `r round(mohk_t$statistic, 2`, p = `r round(mohk_t$p.value, 2)`) of `change_mohk` (Cohen's *d* = `r round(mohk_d$estimate, 2)`) between 2012 and 2017. 
   
    The concurrent steady decrease in trap numbers at Mohawk Reef through time (Fig. 2) may suggest a case of diminishing returns for the commercial fishery. The decrease in average lobster size (Fig. 4) may be the result of higher fishing pressure in prior years (see Fig. 2, Mohawk Reef, 2012) in conjunction with the large recreational fishery presence on this easily shore-accessible reef. Because large lobsters may be capable of consuming urchins (Tegner & Levin 1983, Eurich et al. 2014) and indirectly facilitating the persistence of giant kelp, we recommend further site-wide assessments of kelp and and consumer abundances to monitor the health of Mohawk Reef.
@@ -258,6 +264,12 @@ napl_t # p value = 0.5002, lob means are not significantly different between 201
    
  fig 1 increase in fishing pressur at aq and carp after 2012 may be due to est of mpas (shift of pressure elsewhere)
 ```{r lob sizes at non-MPA sites}
+=======
+  To evaluate the effects of fishing pressure on lobster populations, we compared lobster size (CL) at MPA and non-MPA sites between the time of MPA establishment (2012) and the most recent survey assessment (2017). Between years, mean lobster size did not differ signficantly at either of the two MPA sites: Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, p = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, p = `r round(napl_t$p.value, 2)`). Despite non-significant changes, however, mean lobster CL did increase `change_ivee` mm and `change_napl` mm between 2012 and 2017 at Isla Vista (Cohen's *d* = `r round(ivee_d$estimate, 2)` and Naples Reef (Cohen's *d* = `r round(napl_d$estimate, 2)`, respectively. Conversely, two out of three non-MPA sites saw a decrease in mean lobster CL between years. Carpenteria, though non-significant (t(`r round(carp_t$parameter, 2)`) = `r round(carp_t$statistic, 2)`, p = `r round(carp_t$p.value, 2)`) had a decrease of `change_carp` mm (Cohen's *d* = `r round(carp_d$estimate, 2)`). The most striking difference in lobster size was observed at Mohawk Reef, which saw a significant decline in mean CL (t(`r round(mohk_t$parameter, 2)`) = `r round(mohk_t$statistic, 2`, p = `r round(mohk_t$p.value, 2)`) of `change_mohk` (Cohen's *d* = `r round(mohk_d$estimate, 2)`) between 2012 and 2017.
+  
+  a shore-accessible...is frequented blah blah blah
+```{r compare mean lob size between 2012 and 2017 for nonMPAs}
+>>>>>>> adb9c6d07972ba42ec1b502184a2cf161f2dd6ef
 ##############################
 # subset data by site and year (2012, 2017) to compare sizes at non-MPA sites (AQUE, CARP, MOHK)
 ##############################
@@ -299,8 +311,6 @@ size_mohk_2017 <- abund %>%
 aque_t <- t.test(size_aque_2012, size_aque_2017, var.equal = TRUE) # p = 0.2097
 carp_t <- t.test(size_carp_2012, size_carp_2017, var.equal = TRUE) # p = 0.1819
 mohk_t <- t.test(size_mohk_2012, size_mohk_2017, var.equal = TRUE) # p < 0.001
-
-# Similarly to MPA sites, non-MPA sites show a similar consistency in lobster carapace length when comparing measurements from 2012 and 2017. Carapace length does not differ significantly between 2012 and 2017 at Arroyo Quemado (t(`r round(aque_t$parameter, 2)`) = `r round(aque_t$statistic, 2)`, _p_ = `r round(aque_t$p.value, 2)`) or Carpinteria (t(`r round(carp_t$parameter, 2)`) = `r round(carp_t$statistic, 2)`, _p_ = `r round(carp_t$p.value, 2)`). However, lobster carapace length does differ significantly between comparison years at Mohawk (t(`r round(mohk_t$parameter, 2)`) = `r round(mohk_t$statistic, 2)`, _p_ = `r round(mohk_t$p.value, 2)`). 
 
 ##############################
 # wrangle data to make boxplot comparing 2012 & 2017 for each site
@@ -384,6 +394,72 @@ mean_mohk_2017 <- mean(size_mohk_2017)
 change_mohk <- mean_mohk_2017 - mean_mohk_2012 # 5.253 mm decrease
 ```
 
+##### Lobster size in 2017 inside and outside MPAs
+```{r compare mean lob size in 2017}
+# PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
+
+##############################
+# wrangle data for 2017
+##############################
+
+abund_2017 <- abund %>% 
+  filter(YEAR == "2017",
+         SIZE != "-99999") %>% 
+  mutate(site_full = case_when( # expand to full length names
+      SITE == "AQUE" ~ "Arroyo Quemado",
+      SITE == "CARP" ~ "Carpinteria",
+      SITE == "IVEE" ~ "Isla Vista",
+      SITE == "MOHK" ~ "Mohawk Reef",
+      SITE == "NAPL" ~ "Naples Reef"
+    )
+  ) %>% 
+  select(YEAR, SITE, site_full, SIZE)
+
+##############################
+# test for variances, ANOVA, Tukey's HSD
+##############################
+
+lob_variances <- abund_2017 %>% 
+  group_by(SITE) %>% 
+  summarize(
+    lob_var = var(SIZE)
+  )
+
+lob_variances 
+# largest variance is no greater than 4x smallest variance
+
+size_anova <- aov(SIZE ~ SITE, data = abund_2017)
+summary(size_anova)
+
+size_ph <- TukeyHSD(size_anova)
+size_ph  # so the only ones that are different are NAPL-CARP and NAPL-IVE
+
+##############################
+# box and whisker plot of size
+##############################
+
+abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef")) # make site_full a factor to reorder on plot
+
+#caption2 <- paste(strwrap("Figure 2. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Dashed line represents the mean CL across all five sites in 2017. Mean CL only differed significantly between Naples Reef-Isla Vista (_p_ = 0.004) and Naples Reef-Carpenteria (_p_ = 0.02). All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Asterisks indicate values that differed significantly between sites (***p < 0.005, ** p < 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
+
+#stats <- summarySE(abund_2017, measurevar = "SIZE", groupvars = c("site_full"), na.rm = TRUE) # also need to insert "stats" into ggplot argument, but isn't working correctly
+
+#pdf("fig_2.pdf", width = 8, height = 6)
+size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
+  geom_boxplot(fill = "darkgrey") +
+  geom_hline(yintercept = 82.6, linetype = 2) + # add line at CL mean across sites
+  geom_signif(comparisons = list(c("Naples Reef", "Isla Vista"), c("Naples Reef", "Carpinteria")),
+              map_signif_level = TRUE) +
+  theme_classic() +
+  theme(axis.text = element_text(color = "black"),
+        panel.border = element_rect(colour = "black", fill=NA, size=0.8),
+        legend.position = "none",
+        plot.caption = element_text(size = 10, hjust = 0)) +
+  labs(x = "Site", y = "Carapace Length (mm)")
+size_2017_boxplot
+#dev.off()
+```
+
 ```{r proportion of lobs above legal min}
 # PART 4. WHAT PROPORTION OF OBSERVED LOBSTERS AT EACH SITE ARE ABOVE THE LEGAL MINIMUM (82.6mm)
 
@@ -406,7 +482,7 @@ rownames(abund_2017_size) <- c("Arroyo Quemado", "Carpinteria", "Isla Vista Reef
 # x2 test
 ##############################
 
-lob_prop <- round(prop.table(as.matrix(abund_2017_size), 1), 3)*100
+lob_prop <- round(prop.table(as.matrix(abund_2017_size), 1), 2)
 lob_prop
 
 lob_prop_columns = c("Above", "Below")
@@ -425,6 +501,9 @@ lob_x2 <- chisq.test(abund_2017_size)
 lob_x2
 # The proportion of legal size lobsters is significantly different amongst sites ($\chi^2$(`r lob_x2$parameter)) = `r round(lob_x2$statistic, 2`), _p_ < 0.001). 
 ```
+    In 2017, all sites have significantly different mean lobster carapace length (one-way ANOVA, F(4) = 3.42, _p_ < 0.01, $\alpha$ = 0.05) but pairwise comparison with post-hoc Tukey's HSD shows that only mean lobster carapace length at Naples Reef and Isla Vista and Naples Reef and Carpinteria are significantly different (Figure size_2017_boxplot, $\alpha$ = 0.05). 
+  25% of lobsters at all three non-MPA sites are at or above the legal size limit of 82.6mm (Table lob_prop). However, at Naples Reef, 33% of lobsters are above the legal size limit. This indicates [something about MPAs working? idk Naples Reef lob size didn't change significantly between 2012 and 2017 so maybe the point could be something like "some places just have bigger lobs and we need to figure out what it is about that place that makes it such a good refugia for lobsters"]
+
 
 ###References
 
