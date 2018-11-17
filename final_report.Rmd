@@ -3,8 +3,8 @@ title: "Final report"
 author: "An Bui, Sam Csik"
 date: "11/14/2018"
 output:
-  pdf_document: default
   word_document: default
+  pdf_document: default
 editor_options:
   chunk_output_type: console
 always_allow_html: yes
@@ -255,16 +255,6 @@ napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
 napl_t # p value = 0.5002, lob means are not significantly different between 2012 and 2017 at NAPL
 ```
 
-  To evaluate the effects of fishing pressure on lobster populations, we compared lobster size (CL) at MPA and non-MPA sites between the time of MPA establishment (2012) and the most recent survey assessment (2017). Between years, mean lobster size did not differ signficantly at either of the two MPA sites: Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, p = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, p = `r round(napl_t$p.value, 2)`). Despite non-significant changes, however, mean lobster CL did increase `change_ivee` mm and `change_napl` mm between 2012 and 2017 at Isla Vista (Cohen's *d* = `r round(ivee_d$estimate, 2)` and Naples Reef (Cohen's *d* = `r round(napl_d$estimate, 2)`, respectively (Fig.4). Conversely, two out of three non-MPA sites saw a decrease in mean lobster CL between years. Carpenteria, though non-significant (t(`r round(carp_t$parameter, 2)`) = `r round(carp_t$statistic, 2)`, p = `r round(carp_t$p.value, 2)`) had a decrease of `change_carp` mm (Cohen's *d* = `r round(carp_d$estimate, 2)`). The most striking difference in lobster size was observed at Mohawk Reef, which saw a significant decline in mean CL (t(`r round(mohk_t$parameter, 2)`) = `r round(mohk_t$statistic, 2`, p = `r round(mohk_t$p.value, 2)`) of `change_mohk` (Cohen's *d* = `r round(mohk_d$estimate, 2)`) between 2012 and 2017. 
-  
-   The concurrent steady decrease in trap numbers at Mohawk Reef through time (Fig. 2) may suggest a case of diminishing returns for the commercial fishery. The decrease in average lobster size (Fig. 4) may be the result of higher fishing pressure in prior years (see Fig. 2, Mohawk Reef, 2012) in conjunction with the large recreational fishery presence on this easily shore-accessible reef. Because large lobsters may be capable of consuming urchins (Tegner & Levin 1983, Eurich et al. 2014) and indirectly facilitating the persistence of giant kelp, we recommend further site-wide assessments of kelp and consumer abundances to monitor the health of Mohawk Reef.
-   
-   The increasing average CL trend observed at Isla Vista and Naples Reef is encouraging given the relatively new (< 5 years) protections established at these two MPA sites. Slow growing taxa, such as lobsters (Engle 1979) which must molt to increase their body size (typically 1-2 times per year), are often slower to exhibit significant responses to protection (Lester et al. 2009). However, their small home ranges and high site fidelity to rocky reef habitats have contributed to their recoveries in other MPAs (Kay et al. 2012). CLOSING REMARKS HERE.
-   
-  
-   large lobster produce more eggs--but there is evidence that most recruits actually come from baja so i'm not actually sure i'd hang my hat on this one...
-   
- fig 1 increase in fishing pressur at aq and carp after 2012 may be due to est of mpas (shift of pressure elsewhere)
 ```{r lob sizes at non-MPA sites, include = FALSE}
 ##############################
 # subset data by site and year (2012, 2017) to compare sizes at non-MPA sites (AQUE, CARP, MOHK)
@@ -389,7 +379,17 @@ mean_mohk_2012 <- mean(size_mohk_2012)
 mean_mohk_2017 <- mean(size_mohk_2017)
 change_mohk <- mean_mohk_2017 - mean_mohk_2012 # 5.253 mm decrease
 ```
-
+  To evaluate the effects of fishing pressure on lobster populations, we compared lobster size (CL) at MPA and non-MPA sites between the time of MPA establishment (2012) and the most recent survey assessment (2017). Between years, mean lobster size did not differ signficantly at either of the two MPA sites: Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, p = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, p = `r round(napl_t$p.value, 2)`). Despite non-significant changes, however, mean lobster CL did increase `change_ivee` mm and `change_napl` mm between 2012 and 2017 at Isla Vista (Cohen's *d* = `r round(ivee_d$estimate, 2)` and Naples Reef (Cohen's *d* = `r round(napl_d$estimate, 2)`, respectively (Fig.4). Conversely, two out of three non-MPA sites saw a decrease in mean lobster CL between years. Carpenteria, though non-significant (t(`r round(carp_t$parameter, 2)`) = `r round(carp_t$statistic, 2)`, p = `r round(carp_t$p.value, 2)`) had a decrease of `change_carp` mm (Cohen's *d* = `r round(carp_d$estimate, 2)`). The most striking difference in lobster size was observed at Mohawk Reef, which saw a significant decline in mean CL (t(`r round(mohk_t$parameter, 2)`) = `r round(mohk_t$statistic, 2)`, p = `r round(mohk_t$p.value, 2)`) of `change_mohk` (Cohen's *d* = `r round(mohk_d$estimate, 2)`) between 2012 and 2017. 
+  
+   The concurrent steady decrease in trap numbers at Mohawk Reef through time (Fig. 2) may suggest a case of diminishing returns for the commercial fishery. The decrease in average lobster size (Fig. 4) may be the result of higher fishing pressure in prior years (see Fig. 2, Mohawk Reef, 2012) in conjunction with the large recreational fishery presence on this easily shore-accessible reef. Because large lobsters may be capable of consuming urchins (Tegner & Levin 1983, Eurich et al. 2014) and indirectly facilitating the persistence of giant kelp, we recommend further site-wide assessments of kelp and consumer abundances to monitor the health of Mohawk Reef.
+   
+   The increasing average CL trend observed at Isla Vista and Naples Reef is encouraging given the relatively new (< 5 years) protections established at these two MPA sites. Slow growing taxa, such as lobsters (Engle 1979) which must molt to increase their body size (typically 1-2 times per year), are often slower to exhibit significant responses to protection (Lester et al. 2009). However, their small home ranges and high site fidelity to rocky reef habitats have contributed to their recoveries in other MPAs (Kay et al. 2012). CLOSING REMARKS HERE.
+   
+  
+   large lobster produce more eggs--but there is evidence that most recruits actually come from baja so i'm not actually sure i'd hang my hat on this one...
+   
+ fig 1 increase in fishing pressur at aq and carp after 2012 may be due to est of mpas (shift of pressure elsewhere)
+ 
 ##### Lobster size in 2017 inside and outside MPAs
 ```{r compare mean lob size in 2017, include = FALSE}
 # PART 2. COMPARE MEAN LOBSTER SIZE BY SITE IN 2017
