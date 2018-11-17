@@ -3,6 +3,7 @@ title: "Final report"
 author: "An Bui, Sam Csik"
 date: "11/14/2018"
 output:
+  pdf_document: default
   word_document: default
 editor_options:
   chunk_output_type: console
@@ -121,7 +122,7 @@ abund_by_yearssite$site_full <- factor(abund_by_yearssite$site_full, levels=c("I
 
 traps_by_yearssite$site_full <- factor(traps_by_yearssite$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption1 <- paste(strwrap("Figure 1. Lobster abundance and fishing pressure at five locations in the Santa Barbara Channel (2017). Lobster abundance (solid lines) estimated annually on transects conducted via SCUBA at five locations. Fishing pressure is estimated by counting the number of lobster trap floats (dashed lines) in definded ares of coastline every 2 - 4 weeks during the fishing season. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Data from Reed (2017).", width = 110), collapse = "\n")
+#caption1 <- paste(strwrap("Figure 1. Lobster abundance and fishing pressure at five locations in the Santa Barbara Channel (2017). Lobster abundance (solid lines) estimated annually on transects conducted via SCUBA at five locations. Fishing pressure is estimated by counting the number of lobster trap floats (dashed lines) in definded ares of coastline every 2 - 4 weeks during the fishing season. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Data from Reed (2017).", width = 110), collapse = "\n")
 
 #pdf("fig_1.pdf", width = 8, height = 6)
 abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
@@ -135,7 +136,7 @@ abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
         strip.background = element_rect(fill = "grey"),
         plot.caption = element_text(size = 10, hjust = 0)) +
   facet_grid(~site_full) +
-  labs(x = "Year", y = "Counts", caption = caption1) +
+  labs(x = "Year", y = "Counts") + # caption = caption1 (to include caption)
   scale_x_continuous(breaks=c(2013, 2015, 2017))
 abund_traps_plot
 #dev.off()
@@ -187,11 +188,11 @@ size_ph  # so the only ones that are different are NAPL-CARP and NAPL-IVE
 
 abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef")) # make site_full a factor to reorder on plot
 
-caption2 <- paste(strwrap("Figure 2. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Dashed line represents the mean CL across all five sites in 2017. Mean CL only differed significantly between Naples Reef-Isla Vista (_p_ = 0.004) and Naples Reef-Carpenteria (_p_ = 0.02). All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
+#caption2 <- paste(strwrap("Figure 2. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Dashed line represents the mean CL across all five sites in 2017. Mean CL only differed significantly between Naples Reef-Isla Vista (_p_ = 0.004) and Naples Reef-Carpenteria (_p_ = 0.02). All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
 
 #stats <- summarySE(abund_2017, measurevar = "SIZE", groupvars = c("site_full"), na.rm = TRUE) # also need to insert "stats" into ggplot argument, but isn't working correctly
 
-pdf("fig_2.pdf", width = 8, height = 6)
+#pdf("fig_2.pdf", width = 8, height = 6)
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   geom_boxplot(fill = "darkgrey") +
   geom_hline(yintercept = 82.6, linetype = 2) + # add line at CL mean across sites
@@ -202,10 +203,9 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
         panel.border = element_rect(colour = "black", fill=NA, size=0.8),
         legend.position = "none",
         plot.caption = element_text(size = 10, hjust = 0)) +
-  labs(x = "Site", y = "Carapace Length (mm)", caption = caption2)
-
+  labs(x = "Site", y = "Carapace Length (mm)")
 size_2017_boxplot
-dev.off()
+#dev.off()
 ```
 
 ##### Lobster size change over time at MPA sites
@@ -247,8 +247,9 @@ napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
 napl_t # p value = 0.5002, lob means are not significantly different between 2012 and 2017 at NAPL
 ```
 
-  Between 2012 and 2017, mean lobster size does not differ signficantly at either Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, _p_ = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, _p_ = `r round(napl_t$p.value, 2)`). 
+  To evaluate the effects of fishing pressure on lobster populations, we compared lobster size (CL) at MPA and non-MPA sites between the time of MPA establishment (2012) and the most recent survey assessment (2017). Between years, mean lobster size did not differ signficantly at either of the two MPA sites: Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, p = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, p = `r round(napl_t$p.value, 2)`). Despite non-significant changes, however, mean lobster CL did increase `change_ivee` mm and `change_napl` mm between 2012 and 2017 at Isla Vista (Cohen's *d* = `r round(ivee_d$estimate, 2)` and Naples Reef (Cohen's *d* = `r round(napl_d$estimate, 2)`, respectively. Conversely, two out of three non-MPA sites saw a decrease in mean lobster CL between years. Carpenteria, though non-significant (t(`r round(carp_t$parameter, 2)`) = `r round(carp_t$statistic, 2)`, p = `r round(carp_t$p.value, 2)`) had a decrease of `change_carp` mm (Cohen's *d* = `r round(carp_d$estimate, 2)`). The most striking difference in lobster size was observed at Mohawk Reef, which saw a significant decline in mean CL (t(`r round(mohk_t$parameter, 2)`) = `r round(mohk_t$statistic, 2`, p = `r round(mohk_t$p.value, 2)`) of `change_mohk` (Cohen's *d* = `r round(mohk_d$estimate, 2)`) between 2012 and 2017. 
   
+  a shore-accessible...is frequented blah blah blah
 ```{r lob sizes at non-MPA sites}
 ##############################
 # subset data by site and year (2012, 2017) to compare sizes at non-MPA sites (AQUE, CARP, MOHK)
@@ -322,14 +323,14 @@ abund_df <- abund %>%
 
 abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). Mean carapace length differed significantly between 2012 and 2017 at Mohawk Reef (t(259) = 4.07, p < 0.001) only. Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
+#caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). Mean carapace length differed significantly between 2012 and 2017 at Mohawk Reef (t(259) = 4.07, p < 0.001) only. Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
 
-pdf("fig_3.pdf", width = 8, height = 6)
+#pdf("fig_3.pdf", width = 8, height = 6)
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
   geom_boxplot(aes(group = YEAR, fill = factor(YEAR))) +
   scale_fill_manual(breaks = c("2012", "2017"),values = c("white", "darkgrey"), name = "Year") +
   facet_grid(~ site_full) +
-  labs(x = "Site", y = "Carapace Length (mm)", caption = caption3) +
+  labs(x = "Site", y = "Carapace Length (mm)") +
   theme_classic() +
    theme(
     axis.title.x=element_blank(),
@@ -339,7 +340,7 @@ abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
     strip.background = element_rect(fill = "grey"),
     plot.caption = element_text(size = 10, hjust = 0)) 
 abund_plot
-dev.off()
+#dev.off()
 
 ##############################
 # Cohen's d effect size -- change in CL from 2012-2017 at each site
