@@ -3,6 +3,7 @@ title: "Final report"
 author: "An Bui, Sam Csik"
 date: "11/14/2018"
 output:
+  pdf_document: default
   word_document: default
 editor_options:
   chunk_output_type: console
@@ -17,25 +18,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
   The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). Within southern California nearshore ecosystems, lobsters can have important impacts as keystone predators. They have been shown to increase biodiversity within rocky intertidal regions in Southern California by limiting the density and sizes of mussels (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001). They may also indirectly facilitate the resistance of giant kelp forests from phase shifts to urchin barrens by consuming red and purple urchins (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014).  
   
-  Beyond their ecological importance, CA spiny lobster supports a valuable commercial fishery extending from Point Conception to the US-Mexico border, generating over $18 million in ex-vessel landings annually (FMP 2016). Restrictions on commercial takes include (1) a minimum carapace length (CL) limit (82.6 mm), which allows most individuals to reproduce for up to two years before reaching the legal size limit and (2) a seasonal fishery closure (March - Ocotober), which protects females from harvest during the species' spawning period. These management measures have ensured a stable lobster stock since 2000, though an increase in commercial fishing effort raises questions about the long-term sustainability of the commercial fishery.
+  Beyond their ecological importance, the CA spiny lobster supports a valuable commercial fishery extending from Point Conception to the US-Mexico border, generating over $18 million in ex-vessel landings annually (CDFW 2016). An avid recreational fishery also exists, extending further north to San Luis Obispo County and contributes an estimated 40 million in consumer spending to the state's economy each year (CDFW 2016). Restrictions on commercial and recreational takes include (1) a minimum carapace length (CL) limit (82.6 mm), which allows most individuals to reproduce for up to two years before reaching the legal size limit and (2) a seasonal fishery closure (March - Ocotober), which protects females from harvest during the species' spawning period. These management measures have helped to promote a stable lobster stock since 2000, though an increase in commercial fishing effort raises questions about the long-term sustainability of the fishery.
   
-  An avid recreationally fishery extends even further north to San Luis Obispo County, and contributes an estimated $40 million in consumer spending to the state's economy each year (FMP 2016). Most lobsters are collected by divers, but hoop-net capture has also risen in popularity over the past decade. Recreational fishers are required by California Fish and Wildlife (CDFW) to record lobstering activity on report cards, which are returned seasonally to CDFW.
-  
-  The creation of 50 marine protected areas (MPAs) in southern California in 2012....
-  
-
-
-- importance of size/what means for reproduction; prelim data from wet lab (Stier et al., unpublished data) suggests that only medium - large lobsters will consume very small urchins (contrary to everyone wanting to believe that lobsters are urchin-eating machines)...fishing out legal/larger-than-legal lobsters has implications for their ability to effect urhcin populations-- I THINK I MIGHT SAVE THIS FOR THE DISCUSSION
-
-
+  In order to maintain healhty lobster populations in the Santa Barbara Channel, as well as the kelp forest communities that they support, studies have recommended the establishment of no-take marine reserves to supplement traditional fisheries management practices (Airame et al. 2003). The establishment of such protected sites in 2012 has provided the Santa Barbara Coastal Long Term Ecological Reserach Project a unique opportunity to monitor lobster populations under different protection regimes and  investigate the effects of fishing on kelp forest community dynamics (Reed 2017). Data collected by the SBC LTER can be used by researchers and policy makers to assess both the impacts of fishing efforts on coastal kelp forest communitites, as well as the effectiveness of marine protected areas (MPAs) in promoting healthy lobster populations. Studies have shown that only larger lobsters (>90 mm) are capable of consuming adult urchins (Tegner & Dayton 1981). Because areas with predominantly adult urchin assemblages are more prone to becoming urchin barrens (Mann 1977, Brietburg 1996), the protection of lobsters above the legal size limit may be imperative in sustaining the health of giant kelp. As such, it is important that researchers and govenrment agencies are knowledgeable of the size structure and abundance of these important predators within coastal kelp forest habitats if they are to effectively manage their populations, habitat, and fisheries.
 
 #### Methods and objectives
 ##### Marine Protected Areas in the SBC LTER
   California's Marine Life Protection Act was passed in 1999 to designate a network of marine protected areas with the input of scientists and citizen stakeholders. An express purpose of the act was to practice "adaptive management", or management of ecosystems and their communities by integrating current science to continually change management strategies to best fit the needs of the system as well as the stakeholders (cite MLPA).  
-  In the five focal sites within the Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites, two of these are MPAs (Isla Vista, Naples Reef), while three (Arroyo Quemado, Carpinteria, Mohawk) are not. Isla Vista and Naples Reef were designated MPAs in 2012. This design is a natural experiment to understand the effects of fishing pressure on the population dynamics of integral species to the kelp forest, such as the CA spiny lobster. When integrating lobster surveys with algal and invertebrate surveys also being conducted at these sites, we are able to construct a holistic profile of kelp forest community dynamics in response to fishing pressure.
+  Of the five focal sites within the Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites, two are MPAs (Isla Vista, Naples Reef), and three (Arroyo Quemado, Carpinteria, Mohawk) are unprotected and open to both commercial and recreational fishing. Isla Vista and Naples Reef were designated MPAs in 2012. This design is a natural experiment to understand the effects of fishing pressure on the population dynamics of integral species to the kelp forest, such as the CA spiny lobster. When integrating lobster surveys with algal and invertebrate surveys also being conducted at these sites, the SBC LTER is able to better construct a holistic profile of kelp forest community dynamics in response to fishing pressure.
 
 ##### Long term surveys
-  Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded by divers on SCUBA on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (fig. 1).  
+  Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded by divers on SCUBA on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (Fig. 1).  
   Fishing pressure is quantified by counting floating trap buoys at eight SBC LTER sites every two weeks during the legal lobster fishing season from October to March. Trap buoys are attached to wire lobster traps set no deeper than 15m below the ocean surface.
 
 ##### Objectives
@@ -46,6 +39,10 @@ The following report analyzes lobster abundances and sizes at five SBC LTER loca
 We find that _____________. 
 
 #### Results and Discussion
+
+- importance of size/what means for reproduction; prelim data from wet lab (Stier et al., unpublished data) suggests that only medium - large lobsters will consume very small urchins (contrary to everyone wanting to believe that lobsters are urchin-eating machines)...fishing out legal/larger-than-legal lobsters has implications for their ability to effect urhcin populations-- I THINK I MIGHT SAVE THIS FOR THE DISCUSSION
+
+
 ```{r set up packages and data frames, include = FALSE}
 # load required packages
 library(Rmisc)
@@ -59,7 +56,6 @@ library(onewaytests)
 library(reshape2)
 library(lemon)
 library(ggpubr)
-library(ggThemeAssist)
 
 # read in lobster_size_abundance.csv file and get into tidy format
 size_abund <- read_csv("lobster_size_abundance.csv")
@@ -126,7 +122,7 @@ abund_by_yearssite$site_full <- factor(abund_by_yearssite$site_full, levels=c("I
 
 traps_by_yearssite$site_full <- factor(traps_by_yearssite$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption1 <- paste(strwrap("Figure 1. Lobster abundance and fishing pressure at five locations in the Santa Barbara Channel (2017). Lobster abundance (solid lines) estimated annually on transects conducted via SCUBA at five locations. Fishing pressure is estimated by counting the number of lobster trap floats (dashed lines) in definded ares of coastline every 2 - 4 weeks during the fishing season. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Data from Reed (2017).", width = 110), collapse = "\n")
+#caption1 <- paste(strwrap("Figure 1. Lobster abundance and fishing pressure at five locations in the Santa Barbara Channel (2017). Lobster abundance (solid lines) estimated annually on transects conducted via SCUBA at five locations. Fishing pressure is estimated by counting the number of lobster trap floats (dashed lines) in definded ares of coastline every 2 - 4 weeks during the fishing season. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Data from Reed (2017).", width = 110), collapse = "\n")
 
 #pdf("fig_1.pdf", width = 8, height = 6)
 abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
@@ -140,7 +136,7 @@ abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
         strip.background = element_rect(fill = "grey"),
         plot.caption = element_text(size = 10, hjust = 0)) +
   facet_grid(~site_full) +
-  labs(x = "Year", y = "Counts", caption = caption1) +
+  labs(x = "Year", y = "Counts") + # caption = caption1 (to include caption)
   scale_x_continuous(breaks=c(2013, 2015, 2017))
 abund_traps_plot
 #dev.off()
@@ -192,11 +188,11 @@ size_ph  # so the only ones that are different are NAPL-CARP and NAPL-IVE
 
 abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef")) # make site_full a factor to reorder on plot
 
-caption2 <- paste(strwrap("Figure 2. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Dashed line represents the mean CL across all five sites in 2017. Mean CL only differed significantly between Naples Reef-Isla Vista (_p_ = 0.004) and Naples Reef-Carpenteria (_p_ = 0.02). All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
+#caption2 <- paste(strwrap("Figure 2. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Dashed line represents the mean CL across all five sites in 2017. Mean CL only differed significantly between Naples Reef-Isla Vista (_p_ = 0.004) and Naples Reef-Carpenteria (_p_ = 0.02). All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
 
 #stats <- summarySE(abund_2017, measurevar = "SIZE", groupvars = c("site_full"), na.rm = TRUE) # also need to insert "stats" into ggplot argument, but isn't working correctly
 
-pdf("fig_2.pdf", width = 8, height = 6)
+#pdf("fig_2.pdf", width = 8, height = 6)
 size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   geom_boxplot(fill = "darkgrey") +
   geom_hline(yintercept = 82.6, linetype = 2) + # add line at CL mean across sites
@@ -207,10 +203,9 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
         panel.border = element_rect(colour = "black", fill=NA, size=0.8),
         legend.position = "none",
         plot.caption = element_text(size = 10, hjust = 0)) +
-  labs(x = "Site", y = "Carapace Length (mm)", caption = caption2)
-
+  labs(x = "Site", y = "Carapace Length (mm)")
 size_2017_boxplot
-dev.off()
+#dev.off()
 ```
 
 ##### Lobster size change over time at MPA sites
@@ -252,8 +247,9 @@ napl_t <- t.test(size_napl_2012, size_napl_2017, var.equal = TRUE)
 napl_t # p value = 0.5002, lob means are not significantly different between 2012 and 2017 at NAPL
 ```
 
-  Between 2012 and 2017, mean lobster size does not differ signficantly at either Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, _p_ = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, _p_ = `r round(napl_t$p.value, 2)`). 
+  To evaluate the effects of fishing pressure on lobster populations, we compared lobster size (CL) at MPA and non-MPA sites between the time of MPA establishment (2012) and the most recent survey assessment (2017). Between years, mean lobster size did not differ signficantly at either of the two MPA sites: Isla Vista (t(`r round(ivee_t$parameter, 2)`) = `r round(ivee_t$statistic, 2)`, p = `r round(ivee_t$p.value, 2)`) or Naples Reef (t(`r round(napl_t$parameter, 2)`) = `r round(napl_t$statistic, 2)`, p = `r round(napl_t$p.value, 2)`). Despite non-significant changes, however, mean lobster CL did increase `change_ivee` mm and `change_napl` mm between 2012 and 2017 at Isla Vista (Cohen's *d* = `r round(ivee_d$estimate, 2)` and Naples Reef (Cohen's *d* = `r round(napl_d$estimate, 2)`, respectively. Conversely, two out of three non-MPA sites saw a decrease in mean lobster CL between years. Carpenteria, though non-significant (t(`r round(carp_t$parameter, 2)`) = `r round(carp_t$statistic, 2)`, p = `r round(carp_t$p.value, 2)`) had a decrease of `change_carp` mm (Cohen's *d* = `r round(carp_d$estimate, 2)`). The most striking difference in lobster size was observed at Mohawk Reef, which saw a significant decline in mean CL (t(`r round(mohk_t$parameter, 2)`) = `r round(mohk_t$statistic, 2`, p = `r round(mohk_t$p.value, 2)`) of `change_mohk` (Cohen's *d* = `r round(mohk_d$estimate, 2)`) between 2012 and 2017. 
   
+  a shore-accessible...is frequented blah blah blah
 ```{r lob sizes at non-MPA sites}
 ##############################
 # subset data by site and year (2012, 2017) to compare sizes at non-MPA sites (AQUE, CARP, MOHK)
@@ -327,14 +323,14 @@ abund_df <- abund %>%
 
 abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). Mean carapace length differed significantly between 2012 and 2017 at Mohawk Reef (t(259) = 4.07, p < 0.001) only. Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
+#caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). Mean carapace length differed significantly between 2012 and 2017 at Mohawk Reef (t(259) = 4.07, p < 0.001) only. Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
 
-pdf("fig_3.pdf", width = 8, height = 6)
+#pdf("fig_3.pdf", width = 8, height = 6)
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
   geom_boxplot(aes(group = YEAR, fill = factor(YEAR))) +
   scale_fill_manual(breaks = c("2012", "2017"),values = c("white", "darkgrey"), name = "Year") +
   facet_grid(~ site_full) +
-  labs(x = "Site", y = "Carapace Length (mm)", caption = caption3) +
+  labs(x = "Site", y = "Carapace Length (mm)") +
   theme_classic() +
    theme(
     axis.title.x=element_blank(),
@@ -344,7 +340,7 @@ abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
     strip.background = element_rect(fill = "grey"),
     plot.caption = element_text(size = 10, hjust = 0)) 
 abund_plot
-dev.off()
+#dev.off()
 
 ##############################
 # Cohen's d effect size -- change in CL from 2012-2017 at each site
@@ -422,4 +418,24 @@ lob_x2 <- chisq.test(abund_2017_size)
 lob_x2
 # The proportion of legal size lobsters is significantly different amongst sites ($\chi^2$(`r lob_x2$parameter)) = `r round(lob_x2$statistic, 2`), _p_ < 0.001). 
 ```
+
+###References
+
+1. Lindberg RJ (1955) Growth, population dynamics, and field behavior in the spiny lobster (Panulirus interruptus) (Randall). University of California Publications in Zoology. 59:157-248.
+2. Velazquez (with accent over "a") AV (2003) Reproductive strategies of the spiny lobster (Panulirus interruptus) related to the marine environmental variability off central Baja California, Mexico: management implications. Fishieries Research. 65:123-135.
+3. Robles C, Sweetnam D, Eminike J (1990) Lobster predation on mussels: shore-level differences in prey vulnerability and predator preference. Ecology 71:1564-1577.
+4. Tegner MJ & Levin LA (1983) Spiny lobsters and sea urchins: analysis of a predator-prey interaction. Journal of Experimental Marine Biology and Ecology. 73:125-150.
+5. Robles C (1987) Predator foraging characteristics and prey population structure on a sheltered shore. Ecology. 68:1502-1514
+6. Robles C & Robb J (1993) Varied carnivore effects and the prevalence of intertidal algal turfs. Journal of Experimental Marine Biology and Ecology. 166:65-91.
+7. Robles C (1997) Changing recruitment in constant species assemblages: implications for predation theory in intertidal communities. Ecology. 78:1400-1414
+8. Robles CD, Alvarado MA, Desharnais RA (2001) The shifting balance of littoral predator-prey interaction in regimes of. hydrodynamic stress. Oecologia. 128:142-152
+9. Halpern BS, Cottenie K, Broitman BR (2006) Strong top-down control in southern California kelp forest ecosystems. Science. 312:1230-1232.
+10. Eurich JG, Seldon RL, Warner RR (2014) California spiny lobster preference for urchins from kelp forests: implications for urchin barren persistence. Marine Ecology Progress Series. 498:217-225.
+11. California Department of Fish & Wildlife (2016) California spiny lobster fishery managment plan.
+12. Airame S, Dugan JE, Lafferty KD, Leslie H, McArdle DA, Warner RR (2003) Applying ecological criteria to marine reserve design: a case study from the California Channel Islands. Ecological Applications. 13:S170-S184.
+Airman et al. 2003
+13. Reed D (2017) SBC LTER: Reef: Abundance, size and fishing effort for California spiny lobster (Panulirus interruptus), ongoing since 2012. Santa Barbara Coastal Long Term Ecological Research Project. doi:10.6073/pasta/81ce20b29614ec99d85d54907eaa3e8e
+14. Tegner MJ & Dayton PK (1981) Population structure, recruitment and mortality of two sea urchins (Strogylocentrotus franciscanus an S. purpuratus) in a kelp forest. Marine Ecology Progress Series 5:255-268.
+15. Mann KH (1977) Destruction of kelp-beds by sea urchins: a cyclical phenomenon or irreversible degradation? Helgoländer wiss. Merresunters. 30:455-467.
+16. Breitburg DL (1996) Consumer mobility and the relative importance of consumption and competition following physical disturbance. Marine Ecology Progress Series. 138:83-92.
 
