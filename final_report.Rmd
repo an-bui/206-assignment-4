@@ -376,7 +376,7 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
 size_2017_boxplot
 #dev.off()
 ```
-  In 2017, all sites have significantly different mean lobster carapace length (one-way ANOVA, F(4) = 3.42, _p_ < 0.01, $\alpha$ = 0.05) but pairwise comparison with post-hoc Tukey's HSD shows that only mean lobster carapace length at Naples Reef and Isla Vista and Naples Reef and Carpinteria are significantly different (Figure size_2017_boxplot, $\alpha$ = 0.05). 
+
 ```{r proportion of lobs above legal min}
 # PART 4. WHAT PROPORTION OF OBSERVED LOBSTERS AT EACH SITE ARE ABOVE THE LEGAL MINIMUM (82.6mm)
 
@@ -418,7 +418,8 @@ lob_x2 <- chisq.test(abund_2017_size)
 lob_x2
 # The proportion of legal size lobsters is significantly different amongst sites ($\chi^2$(`r lob_x2$parameter)) = `r round(lob_x2$statistic, 2`), _p_ < 0.001). 
 ```
-  In 2017, 75% of lobsters at all three non-MPA sites are at or below the legal size limit of 82.6mm (Table lob_prop). However, at MPA sites, there is a significant difference in mean lobster length (Figure size_2017_boxplot, one-way ANOVA, F(4) = 3.42, _p_ < .01). 
+    In 2017, all sites have significantly different mean lobster carapace length (one-way ANOVA, F(4) = 3.42, _p_ < 0.01, $\alpha$ = 0.05) but pairwise comparison with post-hoc Tukey's HSD shows that only mean lobster carapace length at Naples Reef and Isla Vista and Naples Reef and Carpinteria are significantly different (Figure size_2017_boxplot, $\alpha$ = 0.05). 
+  25% of lobsters at all three non-MPA sites are at or above the legal size limit of 82.6mm (Table lob_prop). However, at Naples Reef, 33% of lobsters are above the legal size limit. This indicates [something about MPAs working? idk Naples Reef lob size didn't change significantly between 2012 and 2017 so maybe the point could be something like "some places just have bigger lobs and we need to figure out what it is about that place that makes it such a good refugia for lobsters"]
 
 
 ###References
