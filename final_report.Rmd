@@ -15,15 +15,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Introduction
 
-  The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, (though few individuals are found north of Point Conception) to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). Within southern California nearshore ecosystems, lobsters can have important impacts as keystone predators. They have been shown to increase biodiversity within rocky intertidal regions in Southern California by limiting the density and sizes of mussels (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001) and may indirectly facilitate the resistance of giant kelp forests from phase shifts to urchin barrens by consuming red and purple urchins (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014).  
-  adf
+  The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). Within southern California nearshore ecosystems, lobsters can have important impacts as keystone predators. They have been shown to increase biodiversity within rocky intertidal regions in Southern California by limiting the density and sizes of mussels (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001). They may also indirectly facilitate the resistance of giant kelp forests from phase shifts to urchin barrens by consuming red and purple urchins (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014).  
   
-  Beyond thier ecological importance, CA spiny lobster support a valuable commercial and recreational fishery
+  Beyond their ecological importance, CA spiny lobster supports a valuable commercial fishery extending from Point Conception to the US-Mexico border, generating over $18 million in ex-vessel landings annually (FMP 2016). Restrictions on commercial takes include (1) a minimum carapace length (CL) limit (82.6 mm), which allows most individuals to reproduce for up to two years before reaching the legal size limit and (2) a seasonal fishery closure (March - Ocotober), which protects females from harvest during the species' spawning period. These management measures have ensured a stable lobster stock since 2000, though an increase in commercial fishing effort raises questions about the long-term sustainability of the commercial fishery.
+  
+  An avid recreationally fishery extends even further north to San Luis Obispo County, and contributes an estimated $40 million in consumer spending to the state's economy each year (FMP 2016). Most lobsters are collected by divers, but hoop-net capture has also risen in popularity over the past decade. Recreational fishers are required by California Fish and Wildlife (CDFW) to record lobstering activity on report cards, which are returned seasonally to CDFW.
+  
+  The creation of 50 marine protected areas (MPAs) in southern California in 2012....
+  
+  
 
-- importance of size/what means for reproduction  
+- importance of size/what means for reproduction; prelim data from wet lab (Stier et al., unpublished data) suggests that only medium - large lobsters will consume very small urchins (contrary to everyone wanting to believe that lobsters are urchin-eating machines)...fishing out legal/larger-than-legal lobsters has implications for their ability to effect urhcin populations-- I THINK I MIGHT SAVE THIS FOR THE DISCUSSION
 
-- expand fisheries portion
-CA spiny lobsters are highly valued as a commercially important resource across their range, generating an estimated $18.7 million in the 2014-15 fishing season in the United States alone. (CDFW 2016). 
+
 
 #### Methods
 - add a map
