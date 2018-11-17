@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
   
   The creation of 50 marine protected areas (MPAs) in southern California in 2012....
   
-  
+
 
 - importance of size/what means for reproduction; prelim data from wet lab (Stier et al., unpublished data) suggests that only medium - large lobsters will consume very small urchins (contrary to everyone wanting to believe that lobsters are urchin-eating machines)...fishing out legal/larger-than-legal lobsters has implications for their ability to effect urhcin populations-- I THINK I MIGHT SAVE THIS FOR THE DISCUSSION
 
