@@ -27,16 +27,16 @@ knitr::opts_chunk$set(echo = TRUE)
   California's Marine Life Protection Act was passed in 1999 to designate a network of marine protected areas with the input of scientists and citizen stakeholders. An express purpose of the act was to practice "adaptive management", or management of ecosystems and their communities by integrating current science to continually change management strategies to best fit the needs of the system as well as the stakeholders (cite MLPA).  
   Of the five focal sites within the Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites, two were designated MPAs (Isla Vista, Naples Reef) in 2012, and three (Arroyo Quemado, Carpinteria, Mohawk) are open to both commercial and recreational fishing. This design acts as a natural experiment to understand the effects of fishing pressure on the population dynamics of integral species to the kelp forest, such as the CA spiny lobster. When integrating lobster surveys with algal and invertebrate surveys also being conducted at these sites, the SBC LTER is able to better construct a holistic profile of kelp forest community dynamics in response to fishing pressure.
 
-##### Long term surveys
+##### Long term survey data and analysis
   Lobster surveys began in 2012 and are conducted annually in late summer as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster counts and sizes are recorded by divers on SCUBA across four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (Fig. 1).  
   Fishing pressure is quantified by counting floating trap buoys at eight SBC LTER sites every two weeks during the legal lobster fishing season from October to March. Trap buoys are attached to wire lobster traps set no deeper than 15m below the ocean surface.
+  All data were analyzed using R version 3.5.1. Data on lobster count, measurements, and trap count for each focal site were compiled to compare mean abundance, length, and trap number for data between 2012 and 2017. Comparisons between 2012 and 2017 at each site were performed using two-sample Student's t-test ($\alpha$ = 0.05). Comparisons between sites were performed using one-way ANOVA ($\alpha$ = 0.05). 
 
 ##### Objectives
 The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPAs (Arroyo Quemado, Carpenteria, Mohawk). We use monitoring data at these five sites to ask:
     1. how lobster abundance, size, and fishing pressure has changed over time between the start of surveys in 2012 and the most recent surveys in 2017,  
     2. how lobster mean size compares across all five sites in 2017, and  
     3. what proportion of lobsters are over the legal size minimum of 82.6mm for the commercial fishery in 2017.
-We find that _____________. 
 
 #### Results and Discussion
 
@@ -144,12 +144,10 @@ abund_traps_plot
 
 ```
 
-Lobster abundance has generally increased between 2012 and 2017, though raw increases in abundance differ between sites. Comparing MPA sites, Isla Vista saw a net increase of 580 lobsters within the transect area, while Naples Reef had a net increase of 106 lobsters. In non-MPA sites, Arroyo Quemado saw a net increase of 29 lobsters, Mohawk Reef populations increased by 95 lobsters, and the largest increase was at Carpinteria with 627 lobsters. The differences in increasing abundance at the MPA sites indicates that there may be environmental factors that contribute to the reproductive success of one population over the other; for example, Isla Vista may ... [idk about this, could just be making shit up so feel free to take out]
+  Lobster abundance has generally increased between 2012 and 2017, though sites differ in net increases in abundance. The Isla Vista lobster population responde quickly to the establishment of the MPA with a net increase of 580 lobsters (Figure abund_traps_plot. Conversely, the Naples Reef population experienced a smaller net increase of 106 lobsters over this five year period. This may be due to site location, as Naples is farther offshore and may have different patterns of lobster recruitment and immigration rates.
+  At non-MPA sites, Arroyo Quemado saw a net increase of 29 lobsters, Mohawk Reef populations increased by 95 lobsters, and the largest increase was at Carpinteria with 627 lobsters. 
  As expected at non-MPA sites, when fishing pressure decreases, lobster abundance increases. At all three non-MPA sites, decreases in fishing pressure are generally followed by increases in lobster abundance. Fishing pressure has fluctuated greatly at all three sites but shows a net decrease between 2012 and 2017. While the effects on the lobster abundance can be slight (e.g. Arroyo Quemado) or large (Carpinteria), lobster populations are responding to fluctuations in fishing pressure. [again, making this up. idk if right]
  
--Isla Vista appears to respond quickly to the est. of the MPA --lobster abudance steadily increases from 2012-2017.
- 
--Naples has experienced a slower increase, possibly due to the fact that its much farther offshore--different recruitment maybe? connectivity differences?
 
 ##### Lobster size in 2017 inside and outside MPAs
 ```{r compare mean lob size in 2017}
@@ -501,8 +499,18 @@ lob_x2
 ```
     In 2017, all sites have significantly different mean lobster carapace length (one-way ANOVA, F(4) = 3.42, _p_ < 0.01, $\alpha$ = 0.05) but pairwise comparison with post-hoc Tukey's HSD shows that only mean lobster carapace length at Naples Reef and Isla Vista and Naples Reef and Carpinteria are significantly different (Figure size_2017_boxplot, $\alpha$ = 0.05). 
   25% of lobsters at all three non-MPA sites are at or above the legal size limit of 82.6mm (Table lob_prop). However, at Naples Reef, 33% of lobsters are above the legal size limit. This indicates [something about MPAs working? idk Naples Reef lob size didn't change significantly between 2012 and 2017 so maybe the point could be something like "some places just have bigger lobs and we need to figure out what it is about that place that makes it such a good refugia for lobsters"]
+  The low proportion of legal size lobsters in non-MPA sites may be because lobster surveys are conducted after the fishing season and most legal size lobsters have been taken from the system. In order to understand how fishing pressure impacts large, reproductively active individuals, we recommend adding surveys before the fishing season.
 
-
+#### Conclusion and recommendations
+  Using a long-term data set on lobster populations in the SBC LTER, we are able to how these populations change over time and are affected by location and MPA designation. We find that: 
+  1. decreased fishing pressure generally leads to increases in lobster abundance 
+  2. changes in mean lobster size over time differ by site
+  3. the majority of lobsters surveyed are below the legal limit of 82.6mm.
+Based on the findings of this report, we recommend:
+  1. site-wide assessments to monitor kelp forest dynamics of Mohawk Reef, and  
+  2. additional surveys of lobster populations in non-MPAs before the fishing season.
+In conjunction with reports on other integral species in the kelp forest from the SBC LTER (e.g. urchins _Strongylocentrotus_ spp.), this report has the potential to inform furture research directions of the SBC LTER and also provide much needed population level data to policy makers and citizen stakeholders. 
+  
 ###References
 
 1. Lindberg RJ (1955) Growth, population dynamics, and field behavior in the spiny lobster (Panulirus interruptus) (Randall). University of California Publications in Zoology. 59:157-248.
