@@ -304,7 +304,7 @@ abund_df <- abund %>%
 
 abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. One-way t-tests of CL by site yielded no signficant differences between 2012 & 2017 (one-way test, alpha = 0.05) Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
+caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). Mean carapace length differed significantly between 2012 and 2017 at Mohawk Reef (t-test info). All other one-way t-tests yielded no significant difference between 2012 and 2017 at MPAs (green) and non-MPAs (yellow). Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
 
 pdf("fig_3.pdf", width = 8, height = 6)
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
