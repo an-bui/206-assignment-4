@@ -13,7 +13,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Introduction
 
-The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). As predators, lobsters can have important impacts on prey populations; they have been shown to limit the density and sizes of mussels in rocky intertidal regions in Southern California (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001) and may indirectly impact giant kelp by releasing it from urchin grazing pressure (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014).  
+  The California spiny lobster, *Panulirus interruptus*, ranges from Monterey Bay, California, (though few individuals are found north of Point Conception) to the southern tip of the Baja California peninsula in temperate-subtropical waters (Lindberg 1955, Vega Velázquez 2003). As adults, they inhabit rocky reef, intertidal, and kelp forest habitats, emerging from shelters at night to forage primarily on benthic invertebrates including mussels (Robles et al. 1990) and red and purple urchins (Tegner & Levin 1983). Within southern California nearshore ecosystems, lobsters can have important impacts as keystone predators. They have been shown to increase biodiversity within rocky intertidal regions in Southern California by limiting the density and sizes of mussels (Robles 1987, Robles et al. 1990, Robles & Robb 1993, Robles 1997, Robles et al. 2001) and may indirectly facilitate the resistance of giant kelp forests from phase shifts to urchin barrens by consuming red and purple urchins (Tegner & Levin 1983, Halpern et al. 2006, Eurich et al. 2014).  
+  
+  Beyond thier ecological importance, CA spiny lobster support a valuable commercial and recreational fishery
 
 - importance of size/what means for reproduction  
 
@@ -25,7 +27,7 @@ CA spiny lobsters are highly valued as a commercially important resource across 
 - MPA info
 Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (figure 1, throw in a map?). Two of these sites (Isla Vista, Naples Reef) are in Marine Protected Areas (MPA), while three (Arroyo Quemado, Carpinteria, Mohawk) are not. Comparing MPA and non-MPA sites allows us to elucidate the effects of fishing on lobster abundance. When integrating these surveys with algal and invertebrate surveys also being conducted at these sites, we are able to construct a holistic profile of kelp forest community dynamics in response to fishing pressure.
 
-The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPA (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.  
+The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPAs (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.  
 
 #### Results and Discussion
 ```{r set up packages and data frames, include = FALSE}
@@ -106,7 +108,7 @@ abund_by_yearssite$site_full <- factor(abund_by_yearssite$site_full, levels=c("I
 
 traps_by_yearssite$site_full <- factor(traps_by_yearssite$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption1 <- paste(strwrap("Figure 1. Lobster abundance and fishing pressure at five locations in the Santa Barbara Channel (2017). Lobster abundance (solid lines) estimated annually in late summer via SCUBA on replicate permanent SBC LTER transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. Fishing pressure estimated by counting the number of lobster trap floats (dashed lines) in definded ares of coastline every 2 - 4 weeks during the fishing season. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Data from Reed (2017).", width = 110), collapse = "\n")
+caption1 <- paste(strwrap("Figure 1. Lobster abundance and fishing pressure at five locations in the Santa Barbara Channel (2017). Lobster abundance (solid lines) estimated annually on transects conducted via SCUBA at five locations. Fishing pressure is estimated by counting the number of lobster trap floats (dashed lines) in definded ares of coastline every 2 - 4 weeks during the fishing season. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Data from Reed (2017).", width = 110), collapse = "\n")
 
 #pdf("fig_1.pdf", width = 8, height = 6)
 abund_traps_plot <- ggplot(abund_by_yearssite, aes(x = YEAR, y = count)) +
@@ -172,7 +174,7 @@ size_ph  # so the only ones that are different are NAPL-CARP and NAPL-IVE
 
 abund_2017$site_full <- factor(abund_2017$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef")) # make site_full a factor to reorder on plot
 
-caption2 <- paste(strwrap("Figure 2. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Dashed line represents the mean CL across all five sites in 2017. Mean CL only differed significantly between Naples Reef-Carpenteria and Naples Reef-Isla Vista. All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
+caption2 <- paste(strwrap("Figure 2. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. Dashed line represents the mean CL across all five sites in 2017. Mean CL only differed significantly between Naples Reef-Isla Vista (_p_ = 0.004) and Naples Reef-Carpenteria (_p_ = 0.02). All other pairwise comparisons yielded no signficant differences (one-way ANOVA, F(4) = 3.42, p < 0.01) with post-hoc Tukey's HSD (alpha = 0.05). Data from Reed (2017).", width = 110), collapse = "\n")
 
 #stats <- summarySE(abund_2017, measurevar = "SIZE", groupvars = c("site_full"), na.rm = TRUE) # also need to insert "stats" into ggplot argument, but isn't working correctly
 
@@ -188,6 +190,7 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
         legend.position = "none",
         plot.caption = element_text(size = 10, hjust = 0)) +
   labs(x = "Site", y = "Carapace Length (mm)", caption = caption2)
+
 size_2017_boxplot
 dev.off()
 ```
@@ -266,7 +269,7 @@ size_mohk_2017 <- abund %>%
   pull(SIZE)
 
 ##############################
-# one-way t-test for non-MPA sites
+# two-way t-test for non-MPA sites
 ##############################
 
 aque_t <- t.test(size_aque_2012, size_aque_2017, var.equal = TRUE) # p = 0.2097
@@ -303,7 +306,7 @@ abund_df <- abund %>%
 
 abund_df$site_full <- factor(abund_df$site_full, levels=c("Isla Vista", "Naples Reef","Arroyo Quemado", "Carpinteria", "Mohawk Reef"))
 
-caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). CL estimated on SCUBA in study transects at five locations: Isla Vista, Naples Reef, Arroyo Quemado, Carpenteria, Mohawk. MPAs (green) were designated in 2012. Unprotected areas (yellow) are fished annually. One-way t-tests of CL by site yielded no signficant differences between 2012 & 2017 (one-way test, alpha = 0.05) Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
+caption3 <- paste(strwrap("Figure 3. Carapace lengths (CL, mm) of CA spiny lobster at five locations in the Santa Barbara Channel (2012 & 2017). Mean carapace length differed significantly between 2012 and 2017 at Mohawk Reef (t(259) = 4.07, p < 0.001) only. Data from Reed (2017).", width = 110), collapse = "\n") # fix alpha; bold; how to discuss statistical results?
 
 pdf("fig_3.pdf", width = 8, height = 6)
 abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
@@ -316,7 +319,6 @@ abund_plot <- ggplot(abund_df, aes(x = YEAR, y = SIZE)) +
     axis.title.x=element_blank(),
     axis.text.x=element_blank(),
     axis.ticks.x=element_blank(),
-    #legend.position="none",
     panel.border = element_rect(colour = "black", fill=NA, size=0.7),
     strip.background = element_rect(fill = "grey"),
     plot.caption = element_text(size = 10, hjust = 0)) 
