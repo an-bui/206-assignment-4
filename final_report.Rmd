@@ -26,9 +26,13 @@ knitr::opts_chunk$set(echo = TRUE)
 CA spiny lobsters are highly valued as a commercially important resource across their range, generating an estimated $18.7 million in the 2014-15 fishing season in the United States alone. (CDFW 2016). 
 
 #### Methods
-- add a map
-- MPA info
-Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (figure 1, throw in a map?). Two of these sites (Isla Vista, Naples Reef) are in Marine Protected Areas (MPA), while three (Arroyo Quemado, Carpinteria, Mohawk) are not. Comparing MPA and non-MPA sites allows us to elucidate the effects of fishing on lobster abundance. When integrating these surveys with algal and invertebrate surveys also being conducted at these sites, we are able to construct a holistic profile of kelp forest community dynamics in response to fishing pressure.
+##### Marine Protected Areas in the SBC LTER
+  California's Marine Life Protection Act was passed in 1999 to designate a network of marine protected areas with the input of scientists and citizen stakeholders. An express purpose of the act was to practice "adaptive management", or management of ecosystems and their communities by integrating current science to continually change management strategies to best fit the needs of the system as well as the stakeholders (cite MLPA).  
+  In the five focal sites within the Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites, two of these are MPAs (Isla Vista, Naples Reef), while three (Arroyo Quemado, Carpinteria, Mohawk) are not. Isla Vista and Naples Reef were designated MPAs in 2012. This design is a natural experiment to understand the efficacy of fishing pressure on the population dynamics of integral species to the kelp forest, such as the CA spiny lobster. When integrating lobster surveys with algal and invertebrate surveys also being conducted at these sites, we are able to construct a holistic profile of kelp forest community dynamics in response to fishing pressure. Additionally, since surveys began in the same year that Isla Vista and Naples Reef were designated MPAs, we are able to assess the length of time before seeing changes in population dynamics in response to eliminating fishing pressure.
+
+##### Long term surveys
+  Lobster surveys began in 2012 and were conducted annually as part of a long-term monitoring effort within Santa Barbara Coastal Long Term Ecological Research (SBC LTER) sites. Lobster count and sizes are recorded by divers on SCUBA on four 60 x 5m transects approximately 1km offshore at five sites in the SBC LTER (fig. 1).  
+  Fishing pressure is quantified by counting floating trap buoys at eight SBC LTER sites every two weeks during the legal lobster fishing season from October to March. Trap buoys are attached to wire lobster traps set no deeper than 15m below the ocean surface.
 
 The following report analyzes lobster abundances and sizes at five SBC LTER locations, two of which are MPAs (Isla Vista, Naples Reef), and three non-MPAs (Arroyo Quemado, Carpenteria, Mohawk). We find that ________.  
 
