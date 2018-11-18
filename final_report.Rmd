@@ -438,12 +438,6 @@ size_2017_boxplot <- ggplot(abund_2017, aes(x = site_full, y = SIZE)) +
   labs(x = "Site", y = "Carapace Length (mm)")
 size_2017_boxplot
 #dev.off()
-
-nap <- abund_2017 %>% 
-  filter(SITE == "NAPL")
-
-nap_hist <- ggplot(nap, aes(x = SIZE)) +
-  geom_histogram()
 ```
 
 ```{r proportion of lobs above legal min, include = FALSE}
@@ -523,6 +517,7 @@ Airman et al. 2003
 15. Tegner MJ & Dayton PK (1981) Population structure, recruitment and mortality of two sea urchins (Strogylocentrotus franciscanus an S. purpuratus) in a kelp forest. Marine Ecology Progress Series 5:255-268.
 16. Mann KH (1977) Destruction of kelp-beds by sea urchins: a cyclical phenomenon or irreversible degradation? Helgoländer wiss. Merresunters. 30:455-467.
 17. Breitburg DL (1996) Consumer mobility and the relative importance of consumption and competition following physical disturbance. Marine Ecology Progress Series. 138:83-92.
+18. The Marine Life Protection Act (MLPA) (2008). California Department of Fish and Game.
 18. Engle JM (1979) Ecology and growth of juvenile spiny lobster (Panulirus interruptus) (Randall). Dissertation: University of Southern California. 
 19. Lester SE, Halpern BS, Grorud-Colvert K, Lubchenco J, Ruttenberg BI, Gaines SD, Airame S, Warner RR (2009) Biological effects within no-take marine reserves: a global synthesis. Marine Ecology Progress Series. 384:33-46.
 20. Kay MC, Lenihan HS, Kotchen MJ, Miller CJ (2012) Effects of marine reserves on California spiny lobster are robust and modified by fine-scale habitat features and distance from reserve borders. Marine Ecology Progress Series. 451:137-150.
